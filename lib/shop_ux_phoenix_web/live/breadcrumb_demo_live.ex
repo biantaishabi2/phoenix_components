@@ -31,7 +31,7 @@ defmodule ShopUxPhoenixWeb.BreadcrumbDemoLive do
 
   def render(assigns) do
     ~H"""
-    <div class="p-8 max-w-6xl mx-auto">
+    <div class="p-8 w-full">
       <h1 class="text-3xl font-bold text-gray-900 mb-8">Breadcrumb 面包屑导航组件</h1>
       
       <!-- 基础面包屑 -->

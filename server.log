@@ -1,0 +1,1460 @@
+Compiling 91 files (.ex)
+Generated shop_ux_phoenix app
+[info] Running ShopUxPhoenixWeb.Endpoint with Bandit 1.7.0 at 0.0.0.0:4010 (http)
+[info] Access ShopUxPhoenixWeb.Endpoint at http://localhost:4010
+[watch] build finished, watching for changes...
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+1 warning
+
+Rebuilding...
+
+Done in 1111ms.
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 79ms
+[info] GET /demo/table
+[debug] Processing with ShopUxPhoenixWeb.TableDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "date_picker"}
+  Pipelines: [:browser]
+[info] Sent 200 in 4ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "date_picker"}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /docs/components/date_picker_doc.md
+[debug] Processing with ShopUxPhoenixWeb.DocController.show/2
+  Parameters: %{"path" => ["components", "date_picker_doc.md"]}
+  Pipelines: [:browser]
+[debug] Creating list item: ["1. **日期处理**", "1.", "", "**日期处理**"], indent: 0, line: "1. **日期处理**"
+[debug] Creating list item: ["2. **性能优化**", "2.", "", "**性能优化**"], indent: 0, line: "2. **性能优化**"
+[debug] Creating list item: ["3. **可访问性**", "3.", "", "**可访问性**"], indent: 0, line: "3. **可访问性**"
+[debug] Creating list item: ["4. **用户体验**", "4.", "", "**用户体验**"], indent: 0, line: "4. **用户体验**"
+[info] Sent 200 in 141ms
+
+Rebuilding...
+
+Done in 487ms.
+
+Rebuilding...
+
+Done in 135ms.
+Compiling 10 files (.ex)
+[info] GET /demo/table
+[debug] Processing with ShopUxPhoenixWeb.TableDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 10ms
+[info] GET /demo/table
+[debug] Processing with ShopUxPhoenixWeb.TableDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 5ms
+[info] GET /demo/table
+[debug] Processing with ShopUxPhoenixWeb.TableDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "form_builder"}
+  Pipelines: [:browser]
+[info] Sent 200 in 20ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "form_builder"}
+  Pipelines: [:browser]
+[info] Sent 200 in 10ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "date_picker"}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "input_number"}
+  Pipelines: [:browser]
+[info] Sent 200 in 5ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "switch"}
+  Pipelines: [:browser]
+[info] Sent 200 in 3ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "address_selector"}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /docs/components/address_selector_doc.md
+[debug] Processing with ShopUxPhoenixWeb.DocController.show/2
+  Parameters: %{"path" => ["components", "address_selector_doc.md"]}
+  Pipelines: [:browser]
+[debug] Creating list item: ["1. **数据加载**：对于大量地址数据，建议使用动态加载而非一次性加载全部数据", "1.", "", "**数据加载**：对于大量地址数据，建议使用动态加载而非一次性加载全部数据"], indent: 0, line: "1. **数据加载**：对于大量地址数据，建议使用动态加载而非一次性加载全部数据"
+[debug] Creating list item: ["2. **缓存策略**：地址数据相对稳定，建议在客户端或服务端进行缓存", "2.", "", "**缓存策略**：地址数据相对稳定，建议在客户端或服务端进行缓存"], indent: 0, line: "2. **缓存策略**：地址数据相对稳定，建议在客户端或服务端进行缓存"
+[debug] Creating list item: ["3. **验证规则**：配合表单验证，确保用户选择完整的地址信息", "3.", "", "**验证规则**：配合表单验证，确保用户选择完整的地址信息"], indent: 0, line: "3. **验证规则**：配合表单验证，确保用户选择完整的地址信息"
+[debug] Creating list item: ["4. **用户体验**：提供搜索功能，让用户快速找到目标地址", "4.", "", "**用户体验**：提供搜索功能，让用户快速找到目标地址"], indent: 0, line: "4. **用户体验**：提供搜索功能，让用户快速找到目标地址"
+[debug] Creating list item: ["5. **默认值**：根据用户位置或历史记录设置合理的默认值", "5.", "", "**默认值**：根据用户位置或历史记录设置合理的默认值"], indent: 0, line: "5. **默认值**：根据用户位置或历史记录设置合理的默认值"
+[debug] Creating list item: ["1. 地址编码使用国家标准的行政区划代码", "1.", "", "地址编码使用国家标准的行政区划代码"], indent: 0, line: "1. 地址编码使用国家标准的行政区划代码"
+[debug] Creating list item: ["2. 支持港澳台地区的选择", "2.", "", "支持港澳台地区的选择"], indent: 0, line: "2. 支持港澳台地区的选择"
+[debug] Creating list item: ["3. 详细地址建议限制最大长度（如200字符）", "3.", "", "详细地址建议限制最大长度（如200字符）"], indent: 0, line: "3. 详细地址建议限制最大长度（如200字符）"
+[debug] Creating list item: ["4. 考虑移动端的使用体验，可能需要不同的交互方式", "4.", "", "考虑移动端的使用体验，可能需要不同的交互方式"], indent: 0, line: "4. 考虑移动端的使用体验，可能需要不同的交互方式"
+[info] Sent 200 in 31ms
+[info] GET /demo/address_selector
+[debug] Processing with ShopUxPhoenixWeb.AddressSelectorDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 3ms
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+
+Rebuilding...
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+
+Done in 205ms.
+Compiling 1 file (.ex)
+Generated shop_ux_phoenix app
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 13ms
+
+Rebuilding...
+
+Done in 187ms.
+Compiling 1 file (.ex)
+[watch] build started (change: "js/app.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+
+Rebuilding...
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+
+Done in 140ms.
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 5ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 6ms
+[info] GET /docs/guides/COMPONENT_USAGE_GUIDE.md
+[debug] Processing with ShopUxPhoenixWeb.DocController.show/2
+  Parameters: %{"path" => ["guides", "COMPONENT_USAGE_GUIDE.md"]}
+  Pipelines: [:browser]
+[debug] Creating list item: ["1. **Phoenix Core Components** - Phoenix LiveView 内置的核心组件", "1.", "", "**Phoenix Core Components** - Phoenix LiveView 内置的核心组件"], indent: 0, line: "1. **Phoenix Core Components** - Phoenix LiveView 内置的核心组件"
+[debug] Creating list item: ["2. **Petal Components** - 第三方 Tailwind CSS 组件库", "2.", "", "**Petal Components** - 第三方 Tailwind CSS 组件库"], indent: 0, line: "2. **Petal Components** - 第三方 Tailwind CSS 组件库"
+[debug] Creating list item: ["3. **Shop UX Components** - 我们自定义开发的业务组件", "3.", "", "**Shop UX Components** - 我们自定义开发的业务组件"], indent: 0, line: "3. **Shop UX Components** - 我们自定义开发的业务组件"
+[debug] Creating list item: ["1. 组件的 `class` 属性中的类会覆盖默认样式", "1.", "", "组件的 `class` 属性中的类会覆盖默认样式"], indent: 0, line: "1. 组件的 `class` 属性中的类会覆盖默认样式"
+[debug] Creating list item: ["2. Shop UX 组件的样式优先级高于 Petal Components", "2.", "", "Shop UX 组件的样式优先级高于 Petal Components"], indent: 0, line: "2. Shop UX 组件的样式优先级高于 Petal Components"
+[debug] Creating list item: ["3. 使用 `!important` 强制覆盖（不推荐）", "3.", "", "使用 `!important` 强制覆盖（不推荐）"], indent: 0, line: "3. 使用 `!important` 强制覆盖（不推荐）"
+[info] Sent 200 in 38ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 9ms
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 842µs
+[debug] Live reload: lib/shop_ux_phoenix_web/live/minimal_test_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/minimal_test_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/minimal_test_live.ex
+
+Rebuilding...
+
+Done in 90ms.
+Compiling 1 file (.ex)
+Generated shop_ux_phoenix app
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 4ms
+
+Rebuilding...
+
+Done in 313ms.
+Compiling 1 file (.ex)
+[info] GET /demo/status_badge
+[debug] Processing with ShopUxPhoenixWeb.StatusBadgeDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 10ms
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 6ms
+[info] GET /demo/table
+[debug] Processing with ShopUxPhoenixWeb.TableDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 5ms
+[info] GET /docs/components/table_doc.md
+[debug] Processing with ShopUxPhoenixWeb.DocController.show/2
+  Parameters: %{"path" => ["components", "table_doc.md"]}
+  Pipelines: [:browser]
+[debug] Creating list item: ["1. **性能优化**：大数据量时应使用分页或虚拟滚动", "1.", "", "**性能优化**：大数据量时应使用分页或虚拟滚动"], indent: 0, line: "1. **性能优化**：大数据量时应使用分页或虚拟滚动"
+[debug] Creating list item: ["2. **响应式设计**：考虑移动端的表格展示方案", "2.", "", "**响应式设计**：考虑移动端的表格展示方案"], indent: 0, line: "2. **响应式设计**：考虑移动端的表格展示方案"
+[debug] Creating list item: ["3. **可访问性**：确保表格结构清晰，便于屏幕阅读器使用", "3.", "", "**可访问性**：确保表格结构清晰，便于屏幕阅读器使用"], indent: 0, line: "3. **可访问性**：确保表格结构清晰，便于屏幕阅读器使用"
+[debug] Creating list item: ["4. **状态管理**：选择、排序、分页等状态应在LiveView中统一管理", "4.", "", "**状态管理**：选择、排序、分页等状态应在LiveView中统一管理"], indent: 0, line: "4. **状态管理**：选择、排序、分页等状态应在LiveView中统一管理"
+[debug] Creating list item: ["5. **固定列限制**：固定列数量不宜过多，建议左右固定列总计不超过4个", "5.", "", "**固定列限制**：固定列数量不宜过多，建议左右固定列总计不超过4个"], indent: 0, line: "5. **固定列限制**：固定列数量不宜过多，建议左右固定列总计不超过4个"
+[debug] Creating list item: ["1. **必需属性**：固定列必须设置 width 属性", "1.", "", "**必需属性**：固定列必须设置 width 属性"], indent: 0, line: "1. **必需属性**：固定列必须设置 width 属性"
+[debug] Creating list item: ["2. **宽度分配策略**：合理分配固定列和普通列的宽度", "2.", "", "**宽度分配策略**：合理分配固定列和普通列的宽度"], indent: 0, line: "2. **宽度分配策略**：合理分配固定列和普通列的宽度"
+[debug] Creating list item: ["3. **固定列数量建议**：避免过多固定列影响体验", "3.", "", "**固定列数量建议**：避免过多固定列影响体验"], indent: 0, line: "3. **固定列数量建议**：避免过多固定列影响体验"
+[debug] Creating list item: ["1. **固定列 + 排序**：固定列完全支持排序功能", "1.", "", "**固定列 + 排序**：固定列完全支持排序功能"], indent: 0, line: "1. **固定列 + 排序**：固定列完全支持排序功能"
+[debug] Creating list item: ["2. **固定列 + 文本省略**：为固定列设置省略避免内容溢出", "2.", "", "**固定列 + 文本省略**：为固定列设置省略避免内容溢出"], indent: 0, line: "2. **固定列 + 文本省略**：为固定列设置省略避免内容溢出"
+[debug] Creating list item: ["3. **固定列 + 选择功能**：选择列会自动固定在最左侧", "3.", "", "**固定列 + 选择功能**：选择列会自动固定在最左侧"], indent: 0, line: "3. **固定列 + 选择功能**：选择列会自动固定在最左侧"
+[debug] Creating list item: ["1. **固定宽度**：适用于内容长度固定的列（如ID、状态、操作列）", "1.", "", "**固定宽度**：适用于内容长度固定的列（如ID、状态、操作列）"], indent: 0, line: "1. **固定宽度**：适用于内容长度固定的列（如ID、状态、操作列）"
+[debug] Creating list item: ["2. **百分比宽度**：适用于需要占据容器特定比例的列", "2.", "", "**百分比宽度**：适用于需要占据容器特定比例的列"], indent: 0, line: "2. **百分比宽度**：适用于需要占据容器特定比例的列"
+[debug] Creating list item: ["3. **响应式宽度**：使用 min_width 和 max_width 实现自适应", "3.", "", "**响应式宽度**：使用 min_width 和 max_width 实现自适应"], indent: 0, line: "3. **响应式宽度**：使用 min_width 和 max_width 实现自适应"
+[debug] Creating list item: ["1. **长文本列**：对于可能包含长文本的列启用省略", "1.", "", "**长文本列**：对于可能包含长文本的列启用省略"], indent: 0, line: "1. **长文本列**：对于可能包含长文本的列启用省略"
+[debug] Creating list item: ["2. **搭配 title 提示**：省略的文本会自动添加 title 属性显示完整内容", "2.", "", "**搭配 title 提示**：省略的文本会自动添加 title 属性显示完整内容"], indent: 0, line: "2. **搭配 title 提示**：省略的文本会自动添加 title 属性显示完整内容"
+[debug] Creating list item: ["3. **与固定宽度结合**：省略功能在固定宽度列中效果最佳", "3.", "", "**与固定宽度结合**：省略功能在固定宽度列中效果最佳"], indent: 0, line: "3. **与固定宽度结合**：省略功能在固定宽度列中效果最佳"
+[info] Sent 200 in 72ms
+
+Rebuilding...
+
+Done in 85ms.
+Compiling 1 file (.ex)
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 4ms
+
+Rebuilding...
+
+Done in 171ms.
+
+Rebuilding...
+[watch] build started (change: "js/app.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+
+Done in 128ms.
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+
+Rebuilding...
+
+Done in 108ms.
+Compiling 1 file (.ex)
+[info] GET /
+[debug] Processing with ShopUxPhoenixWeb.PageController.home/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 4ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 11ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+
+Rebuilding...
+[watch] build started (change: "js/websocket_status_hook.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+
+Done in 134ms.
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[watch] build started (change: "js/app.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+
+Rebuilding...
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+[debug] Live reload: priv/static/assets/app.js
+
+Done in 125ms.
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/images/logo-06a11be1f2cdde2c851763d00bdd2e80.svg
+[debug] Live reload: priv/static/images/logo-06a11be1f2cdde2c851763d00bdd2e80.svg
+[debug] Live reload: priv/static/images/logo-06a11be1f2cdde2c851763d00bdd2e80.svg
+[debug] Live reload: priv/static/images/logo.svg
+[debug] Live reload: priv/static/images/logo.svg
+[debug] Live reload: priv/static/images/logo.svg
+[debug] Live reload: priv/static/assets/app-75fd85ef568d3f27e815a5c6d9f34e0d.css
+[debug] Live reload: priv/static/assets/app-165facae70da7c9ed0227317ff99d709.js
+[debug] Live reload: priv/static/assets/app-165facae70da7c9ed0227317ff99d709.js
+[debug] Live reload: priv/static/assets/app-165facae70da7c9ed0227317ff99d709.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app-75fd85ef568d3f27e815a5c6d9f34e0d.css
+[debug] Live reload: priv/static/assets/app-75fd85ef568d3f27e815a5c6d9f34e0d.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+
+Rebuilding...
+Compiling 1 file (.ex)
+    warning: outdented heredoc line. The contents inside the heredoc should be indented at the same level as the closing """. The following is forbidden:
+
+        def text do
+          """
+        contents
+          """
+        end
+
+    Instead make sure the contents are indented as much as the heredoc closing:
+
+        def text do
+          """
+          contents
+          """
+        end
+
+    The current heredoc line is indented too little
+    │
+ 30 │ // 查看 LiveSocket 状态
+    │       ~
+    │
+    └─ lib/shop_ux_phoenix_web/live/debug_live.ex:30:7
+
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+
+Done in 124ms.
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] CONNECTED TO Phoenix.LiveView.Socket in 78µs
+  Transport: :longpoll
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "PTV5aSAlDg4OBlkmDSkOKUINXhE0fmIIxBT3HlzEcO1J5Kk_2e9XGFUR", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "4", "_track_static" => %{"0" => "https://phoenix.biantaishabi.org/assets/app.css", "1" => "https://phoenix.biantaishabi.org/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "Ew-ZhItKmIhl8bevphgIs87Z", "session_id" => "PGzDbcsaRwHa9JNfivHbwQ"}
+[debug] Replied in 638µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{}
+[debug] Replied in 89µs
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 6ms
+[debug] MOUNT ShopUxPhoenixWeb.TableDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "Ew-ZhItKmIhl8bevphgIs87Z", "session_id" => "PGzDbcsaRwHa9JNfivHbwQ"}
+[debug] Replied in 282µs
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[watch] build started (change: "vendor/topbar-wrapper.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+
+Rebuilding...
+[watch] build started (change: "js/app.js")
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[watch] build finished
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+
+Done in 162ms.
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+
+Rebuilding...
+[watch] build started (change: "js/app.js")
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[watch] build finished
+[debug] Live reload: priv/static/assets/app.js
+
+Done in 129ms.
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] CONNECTED TO Phoenix.LiveView.Socket in 87µs
+  Transport: :websocket
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "Xj8-Jmo-CCcVdXc0cRxDU3l1HigqGQk_2mUE5u9rD08G6N4aO2ZgIOnH", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "0", "_track_static" => %{"0" => "http://192.168.191.84:4010/assets/app.css", "1" => "http://192.168.191.84:4010/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.DebugLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 184µs
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 131µs
+[info] CONNECTED TO Phoenix.LiveView.Socket in 66µs
+  Transport: :websocket
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "WgsbFxMKCAUWDiIxERw1RXN-Ijk0YF8Y6YptLA9PGKmBVNBwE9fvW68o", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "0", "_track_static" => %{"0" => "http://192.168.191.84:4010/assets/app.css", "1" => "http://192.168.191.84:4010/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.DebugLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 174µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 158µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 194µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 123µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 136µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 189µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 155µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 143µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 165µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 145µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 213µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 144µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 133µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 254µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 139µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 148µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 178µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 137µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 130µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 115µs
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "address_selector"}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /showcase
+[debug] ** (Phoenix.Router.NoRouteError) no route found for GET /showcase (ShopUxPhoenixWeb.Router)
+    (shop_ux_phoenix 0.1.0) deps/phoenix/lib/phoenix/router.ex:541: ShopUxPhoenixWeb.Router.call/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.plug_builder_call/2
+    (shop_ux_phoenix 0.1.0) deps/plug/lib/plug/debugger.ex:155: ShopUxPhoenixWeb.Endpoint."call (overridable 3)"/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.call/2
+    (phoenix 1.7.21) lib/phoenix/endpoint/sync_code_reload_plug.ex:22: Phoenix.Endpoint.SyncCodeReloadPlug.do_call/4
+    (bandit 1.7.0) lib/bandit/pipeline.ex:131: Bandit.Pipeline.call_plug!/2
+    (bandit 1.7.0) lib/bandit/pipeline.ex:42: Bandit.Pipeline.run/5
+    (bandit 1.7.0) lib/bandit/http1/handler.ex:13: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:8: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 5.2.3.3) gen_server.erl:1085: :gen_server.try_handle_continue/3
+    (stdlib 5.2.3.3) gen_server.erl:995: :gen_server.loop/7
+    (stdlib 5.2.3.3) proc_lib.erl:241: :proc_lib.init_p_do_apply/3
+
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 9ms
+[info] CONNECTED TO Phoenix.LiveView.Socket in 56µs
+  Transport: :websocket
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "XAMYMB0MdwcgMX9GLWQzV3swECQ2DD4o0QsSBGFRqt05j6DeMwTkUZY_", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "0", "_track_static" => %{"0" => "http://192.168.191.84:4010/assets/app.css", "1" => "http://192.168.191.84:4010/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 202µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{}
+[debug] Replied in 58µs
+[debug] MOUNT ShopUxPhoenixWeb.TableDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 294µs
+
+Rebuilding...
+[watch] build started (change: "js/app.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+✘ [ERROR] No matching export in "vendor/topbar.js" for import "default"
+
+    js/app.js:23:7:
+      23 │ import topbar from "../vendor/topbar"
+         ╵        ~~~~~~
+
+1 warning and 1 error
+[watch] build finished
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+
+Done in 143ms.
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "form_builder"}
+[debug] Replied in 224µs
+[debug] MOUNT ShopUxPhoenixWeb.FormBuilderDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 286µs
+Form field changed: %{
+  "_target" => ["name"],
+  "_unused_email" => "",
+  "_unused_phone" => "",
+  "email" => "",
+  "name" => "biantaishabi",
+  "phone" => ""
+}
+[debug] HANDLE EVENT "form_field_changed" in ShopUxPhoenixWeb.FormBuilderDemoLive
+  Parameters: %{"_target" => ["name"], "_unused_email" => "", "_unused_phone" => "", "email" => "", "name" => "biantaishabi", "phone" => ""}
+[debug] Replied in 523µs
+Form field changed: %{
+  "_target" => ["email"],
+  "_unused_phone" => "",
+  "email" => "对的",
+  "name" => "biantaishabi",
+  "phone" => ""
+}
+[debug] HANDLE EVENT "form_field_changed" in ShopUxPhoenixWeb.FormBuilderDemoLive
+  Parameters: %{"_target" => ["email"], "_unused_phone" => "", "email" => "对的", "name" => "biantaishabi", "phone" => ""}
+[debug] Replied in 338µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "select"}
+[debug] Replied in 259µs
+[debug] MOUNT ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 191µs
+[debug] HANDLE EVENT "select_single" in ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: %{"value" => "beijing"}
+[debug] Replied in 181µs
+[debug] HANDLE EVENT "select_multiple" in ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: %{"value" => "beijing"}
+[debug] Replied in 228µs
+[debug] HANDLE EVENT "select_multiple" in ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: %{"value" => "shanghai"}
+[debug] Replied in 133µs
+[watch] build started (change: "js/app.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+
+Rebuilding...
+✘ [ERROR] No matching export in "vendor/topbar.js" for import "default"
+
+    js/app.js:23:7:
+      23 │ import topbar from "../vendor/topbar"
+         ╵        ~~~~~~
+
+1 warning and 1 error
+[watch] build finished
+
+Done in 122ms.
+[debug] HANDLE EVENT "clear_single" in ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 235µs
+[debug] HANDLE EVENT "select_multiple" in ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 252µs
+[debug] HANDLE EVENT "select_multiple" in ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 219µs
+[debug] HANDLE EVENT "select_multiple" in ShopUxPhoenixWeb.SelectDemoLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 164µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "searchable_select"}
+[debug] Replied in 152µs
+[debug] MOUNT ShopUxPhoenixWeb.SearchableSelectDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 8ms
+[info] GET /images/avatar3.jpg
+[info] GET /images/avatar2.jpg
+[info] GET /images/avatar1.jpg
+[debug] ** (Phoenix.Router.NoRouteError) no route found for GET /images/avatar1.jpg (ShopUxPhoenixWeb.Router)
+    (shop_ux_phoenix 0.1.0) deps/phoenix/lib/phoenix/router.ex:541: ShopUxPhoenixWeb.Router.call/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.plug_builder_call/2
+    (shop_ux_phoenix 0.1.0) deps/plug/lib/plug/debugger.ex:155: ShopUxPhoenixWeb.Endpoint."call (overridable 3)"/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.call/2
+    (phoenix 1.7.21) lib/phoenix/endpoint/sync_code_reload_plug.ex:22: Phoenix.Endpoint.SyncCodeReloadPlug.do_call/4
+    (bandit 1.7.0) lib/bandit/pipeline.ex:131: Bandit.Pipeline.call_plug!/2
+    (bandit 1.7.0) lib/bandit/pipeline.ex:42: Bandit.Pipeline.run/5
+    (bandit 1.7.0) lib/bandit/http1/handler.ex:13: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:8: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 5.2.3.3) gen_server.erl:1085: :gen_server.try_handle_continue/3
+    (stdlib 5.2.3.3) gen_server.erl:995: :gen_server.loop/7
+    (stdlib 5.2.3.3) proc_lib.erl:241: :proc_lib.init_p_do_apply/3
+
+[debug] ** (Phoenix.Router.NoRouteError) no route found for GET /images/avatar2.jpg (ShopUxPhoenixWeb.Router)
+    (shop_ux_phoenix 0.1.0) deps/phoenix/lib/phoenix/router.ex:541: ShopUxPhoenixWeb.Router.call/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.plug_builder_call/2
+    (shop_ux_phoenix 0.1.0) deps/plug/lib/plug/debugger.ex:155: ShopUxPhoenixWeb.Endpoint."call (overridable 3)"/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.call/2
+    (phoenix 1.7.21) lib/phoenix/endpoint/sync_code_reload_plug.ex:22: Phoenix.Endpoint.SyncCodeReloadPlug.do_call/4
+    (bandit 1.7.0) lib/bandit/pipeline.ex:131: Bandit.Pipeline.call_plug!/2
+    (bandit 1.7.0) lib/bandit/pipeline.ex:42: Bandit.Pipeline.run/5
+    (bandit 1.7.0) lib/bandit/http1/handler.ex:13: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:8: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 5.2.3.3) gen_server.erl:1085: :gen_server.try_handle_continue/3
+    (stdlib 5.2.3.3) gen_server.erl:995: :gen_server.loop/7
+    (stdlib 5.2.3.3) proc_lib.erl:241: :proc_lib.init_p_do_apply/3
+
+[debug] ** (Phoenix.Router.NoRouteError) no route found for GET /images/avatar3.jpg (ShopUxPhoenixWeb.Router)
+    (shop_ux_phoenix 0.1.0) deps/phoenix/lib/phoenix/router.ex:541: ShopUxPhoenixWeb.Router.call/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.plug_builder_call/2
+    (shop_ux_phoenix 0.1.0) deps/plug/lib/plug/debugger.ex:155: ShopUxPhoenixWeb.Endpoint."call (overridable 3)"/2
+    (shop_ux_phoenix 0.1.0) lib/shop_ux_phoenix_web/endpoint.ex:1: ShopUxPhoenixWeb.Endpoint.call/2
+    (phoenix 1.7.21) lib/phoenix/endpoint/sync_code_reload_plug.ex:22: Phoenix.Endpoint.SyncCodeReloadPlug.do_call/4
+    (bandit 1.7.0) lib/bandit/pipeline.ex:131: Bandit.Pipeline.call_plug!/2
+    (bandit 1.7.0) lib/bandit/pipeline.ex:42: Bandit.Pipeline.run/5
+    (bandit 1.7.0) lib/bandit/http1/handler.ex:13: Bandit.HTTP1.Handler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:18: Bandit.DelegatingHandler.handle_data/3
+    (bandit 1.7.0) lib/bandit/delegating_handler.ex:8: Bandit.DelegatingHandler.handle_continue/2
+    (stdlib 5.2.3.3) gen_server.erl:1085: :gen_server.try_handle_continue/3
+    (stdlib 5.2.3.3) gen_server.erl:995: :gen_server.loop/7
+    (stdlib 5.2.3.3) proc_lib.erl:241: :proc_lib.init_p_do_apply/3
+
+[debug] HANDLE EVENT "toggle_dropdown" in ShopUxPhoenixWeb.SearchableSelectDemoLive
+  Parameters: %{}
+[debug] Replied in 234µs
+[debug] HANDLE EVENT "toggle_dropdown" in ShopUxPhoenixWeb.SearchableSelectDemoLive
+  Parameters: %{}
+[debug] Replied in 165µs
+[debug] HANDLE EVENT "toggle_dropdown" in ShopUxPhoenixWeb.SearchableSelectDemoLive
+  Parameters: %{}
+[debug] Replied in 127µs
+[debug] HANDLE EVENT "toggle_dropdown" in ShopUxPhoenixWeb.SearchableSelectDemoLive
+  Parameters: %{}
+[debug] Replied in 149µs
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "tree_select"}
+[debug] Replied in 255µs
+[debug] MOUNT ShopUxPhoenixWeb.TreeSelectDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 219µs
+[debug] HANDLE EVENT "checkable_change" in ShopUxPhoenixWeb.TreeSelectDemoLive
+  Parameters: %{"checked" => "", "key" => "zhejiang", "value" => "on"}
+[debug] Replied in 470µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "range_picker"}
+[debug] Replied in 443µs
+[debug] MOUNT ShopUxPhoenixWeb.RangePickerDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 249µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "input_number"}
+[debug] Replied in 137µs
+[debug] MOUNT ShopUxPhoenixWeb.InputNumberDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 278µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "switch"}
+[debug] Replied in 229µs
+[debug] MOUNT ShopUxPhoenixWeb.SwitchDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 179µs
+[debug] HANDLE EVENT "toggle_basic" in ShopUxPhoenixWeb.SwitchDemoLive
+  Parameters: %{"value" => "true"}
+[debug] Replied in 253µs
+[debug] HANDLE EVENT "toggle_basic" in ShopUxPhoenixWeb.SwitchDemoLive
+  Parameters: %{}
+[debug] Replied in 261µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "media_upload"}
+[debug] Replied in 278µs
+[debug] MOUNT ShopUxPhoenixWeb.MediaUploadDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 20ms
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "address_selector"}
+[debug] Replied in 302µs
+[debug] MOUNT ShopUxPhoenixWeb.AddressSelectorDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 237µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "media_upload"}
+[debug] Replied in 149µs
+[debug] MOUNT ShopUxPhoenixWeb.MediaUploadDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 261µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "table"}
+[debug] Replied in 266µs
+[debug] MOUNT ShopUxPhoenixWeb.TableDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 296µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "card"}
+[debug] Replied in 252µs
+[debug] MOUNT ShopUxPhoenixWeb.CardDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 179µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "timeline"}
+[debug] Replied in 189µs
+[debug] MOUNT ShopUxPhoenixWeb.TimelineDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 163µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "progress"}
+[debug] Replied in 152µs
+[debug] MOUNT ShopUxPhoenixWeb.ProgressDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 174µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "app_layout"}
+[debug] Replied in 247µs
+[debug] MOUNT ShopUxPhoenixWeb.AppLayoutDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 220µs
+[debug] HANDLE EVENT "menu_click" in ShopUxPhoenixWeb.AppLayoutDemoLive
+  Parameters: %{"key" => "orders", "value" => ""}
+[debug] Replied in 257µs
+[debug] HANDLE EVENT "menu_click" in ShopUxPhoenixWeb.AppLayoutDemoLive
+  Parameters: %{"key" => "products", "value" => ""}
+[debug] Replied in 165µs
+[debug] HANDLE EVENT "menu_click" in ShopUxPhoenixWeb.AppLayoutDemoLive
+  Parameters: %{"key" => "product-create", "value" => ""}
+[debug] Replied in 140µs
+[debug] HANDLE EVENT "menu_click" in ShopUxPhoenixWeb.AppLayoutDemoLive
+  Parameters: %{"key" => "orders", "value" => ""}
+[debug] Replied in 128µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "tabs"}
+[debug] Replied in 233µs
+[debug] MOUNT ShopUxPhoenixWeb.TabsDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 346µs
+[debug] HANDLE EVENT "change_tab" in ShopUxPhoenixWeb.TabsDemoLive
+  Parameters: %{"tab" => "tab2", "value" => ""}
+[debug] Replied in 180µs
+[debug] HANDLE EVENT "change_tab" in ShopUxPhoenixWeb.TabsDemoLive
+  Parameters: %{"tab" => "tab3", "value" => ""}
+[debug] Replied in 275µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "steps"}
+[debug] Replied in 341µs
+[debug] MOUNT ShopUxPhoenixWeb.StepsDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 253µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "breadcrumb"}
+[debug] Replied in 284µs
+[debug] MOUNT ShopUxPhoenixWeb.BreadcrumbDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 287µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "filter_form"}
+[debug] Replied in 217µs
+[debug] MOUNT ShopUxPhoenixWeb.FilterFormDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 262µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "action_buttons"}
+[debug] Replied in 270µs
+[debug] MOUNT ShopUxPhoenixWeb.ActionButtonsDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 279µs
+[debug] HANDLE PARAMS in ShopUxPhoenixWeb.ComponentShowcaseLive
+  Parameters: %{"component" => "dropdown"}
+[debug] Replied in 284µs
+[debug] MOUNT ShopUxPhoenixWeb.DropdownDemoLive
+  Parameters: :not_mounted_at_router
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 186µs
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "switch"}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "range_picker"}
+  Pipelines: [:browser]
+[info] Sent 200 in 5ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "switch"}
+  Pipelines: [:browser]
+[info] Sent 200 in 3ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "form_builder"}
+  Pipelines: [:browser]
+[info] Sent 200 in 10ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "table"}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "statistic"}
+  Pipelines: [:browser]
+[info] Sent 200 in 16ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "timeline"}
+  Pipelines: [:browser]
+[info] Sent 200 in 4ms
+
+Rebuilding...
+[watch] build started (change: "js/app.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+
+Done in 131ms.
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 9ms
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 6ms
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+[debug] Live reload: lib/shop_ux_phoenix_web/live/debug_live.ex
+
+Rebuilding...
+Compiling 1 file (.ex)
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+
+Done in 108ms.
+[info] Sent 200 in 14ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 9ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 8ms
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 8ms
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 6ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] HEAD /components
+[debug] Processing with ShopUxPhoenixWeb.ComponentIndexController.index/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "dropdown"}
+  Pipelines: [:browser]
+[info] Sent 200 in 8ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "form_builder"}
+  Pipelines: [:browser]
+[info] Sent 200 in 10ms
+[info] GET /components/showcase
+[debug] Processing with ShopUxPhoenixWeb.ComponentShowcaseLive.nil/2
+  Parameters: %{"component" => "select"}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[watch] build started (change: "vendor/topbar.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 11ms
+[info] GET /demo/dropdown
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 5ms
+[info] Sent 200 in 7ms
+[watch] build started (change: "vendor/topbar-wrapper.js")
+✘ [ERROR] Top-level await is not available in the configured target environment ("es2017")
+
+    vendor/topbar-wrapper.js:8:19:
+      8 │ const topbarCode = await fetch(new URL('./topbar.js', import.meta.u...
+        ╵                    ~~~~~
+
+▲ [WARNING] "import.meta" is not available in the configured target environment ("es2017") and will be empty [empty-import-meta]
+
+    vendor/topbar-wrapper.js:8:54:
+      8 │ ...fetch(new URL('./topbar.js', import.meta.url)).then(r => r.text());
+        ╵                                 ~~~~~~~~~~~
+
+1 warning and 1 error
+[watch] build finished
+[watch] build started (change: "js/app.js")
+
+Rebuilding...
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because the enclosing "package.json" file sets the type of this file to "module":
+
+    ../../package.json:5:10:
+      5 │   "type": "module",
+        ╵           ~~~~~~~~
+
+  Node's package format requires that CommonJS files in a "type": "module" package use the ".cjs" file extension.
+
+✘ [ERROR] No matching export in "vendor/topbar.js" for import "default"
+
+    js/app.js:23:7:
+      23 │ import topbar from "../vendor/topbar"
+         ╵        ~~~~~~
+
+1 warning and 1 error
+[watch] build finished
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+
+Done in 142ms.
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[debug] Live reload: priv/static/assets/app.css
+[watch] build started (change: "vendor/topbar.js")
+▲ [WARNING] The CommonJS "module" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
+
+    vendor/topbar.js:157:4:
+      157 │     module.exports = topbar;
+          ╵     ~~~~~~
+
+  This file is considered to be an ECMAScript module because of the "export" keyword here:
+
+    vendor/topbar.js:168:0:
+      168 │ export default window.topbar;
+          ╵ ~~~~~~
+
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+1 warning
+[watch] build finished
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 2ms
+[info] GET /demo/dropdown
+[info] GET /demo/dropdown
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 7ms
+[info] Sent 200 in 9ms
+[info] Sent 200 in 10ms
+[info] CONNECTED TO Phoenix.LiveView.Socket in 72µs
+  Transport: :websocket
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "GQZdKDE5WGE3HxcncgY1f1UCDH4OMAAiuT6Knri4fZXT5TBMcEH1mfgU", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "0", "_track_static" => %{"0" => "http://192.168.191.84:4010/assets/app.css", "1" => "http://192.168.191.84:4010/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.DebugLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 337µs
+[info] CONNECTED TO Phoenix.LiveView.Socket in 84µs
+  Transport: :websocket
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "JDQtMzwcXTsDCwYsFhgyYQIOaQRTHQROHfFPcWlnRNI_QJES4I-K0Kc9", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "0", "_track_static" => %{"0" => "http://192.168.191.84:4010/assets/app.css", "1" => "http://192.168.191.84:4010/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.DropdownDemoLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 191µs
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[debug] Live reload: priv/static/assets/app.js
+[info] GET /debug
+[debug] Processing with ShopUxPhoenixWeb.DebugLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 1ms
+[info] GET /demo/dropdown
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 8ms
+[info] Sent 200 in 8ms
+[info] GET /demo/dropdown
+[debug] Processing with ShopUxPhoenixWeb.DropdownDemoLive.nil/2
+  Parameters: %{}
+  Pipelines: [:browser]
+[info] Sent 200 in 6ms
+[info] CONNECTED TO Phoenix.LiveView.Socket in 56µs
+  Transport: :websocket
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "CWABU2ghUj8HJiQlBDBaYk8oLQoyPiROe2j07jcjVckVCb-PyoiEQhC9", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "0", "_track_static" => %{"0" => "http://192.168.191.84:4010/assets/app.css", "1" => "http://192.168.191.84:4010/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.DebugLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 170µs
+[info] CONNECTED TO Phoenix.LiveView.Socket in 56µs
+  Transport: :websocket
+  Serializer: Phoenix.Socket.V2.JSONSerializer
+  Parameters: %{"_csrf_token" => "HQheITA8HBE2DCVLAxsVenp1Ph0TNDI0qZ5Bow-DgIj8DIbHL2zRpbUC", "_live_referer" => "undefined", "_mount_attempts" => "0", "_mounts" => "0", "_track_static" => %{"0" => "http://192.168.191.84:4010/assets/app.css", "1" => "http://192.168.191.84:4010/assets/app.js"}, "vsn" => "2.0.0"}
+[debug] MOUNT ShopUxPhoenixWeb.DropdownDemoLive
+  Parameters: %{}
+  Session: %{"_csrf_token" => "lRkc_K1UQEOsGRw26GDOcVgw", "session_id" => "YRnLgK-dKTG7do-bY4l8Lg"}
+[debug] Replied in 264µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 420µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 243µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 125µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 124µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 111µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 127µs
+[debug] HANDLE EVENT "increment" in ShopUxPhoenixWeb.DebugLive
+  Parameters: %{"value" => ""}
+[debug] Replied in 127µs

@@ -28,7 +28,7 @@ defmodule ShopUxPhoenixWeb.CardDemoLive do
 
   def render(assigns) do
     ~H"""
-    <div class="p-8 max-w-7xl mx-auto">
+    <div class="p-8 w-full">
       <h1 class="text-3xl font-bold text-gray-900 mb-8">Card 卡片组件</h1>
       
       <!-- 基础用法 -->

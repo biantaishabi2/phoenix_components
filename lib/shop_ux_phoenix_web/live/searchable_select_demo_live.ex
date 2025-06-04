@@ -54,7 +54,7 @@ defmodule ShopUxPhoenixWeb.SearchableSelectDemoLive do
 
   def render(assigns) do
     ~H"""
-    <div class="p-8 max-w-4xl mx-auto">
+    <div class="p-8 w-full">
       <h1 class="text-3xl font-bold mb-8">SearchableSelect 组件演示</h1>
       
       <!-- 基础用法 -->

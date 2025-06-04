@@ -22,17 +22,33 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 import InputNumberHook from "./input_number_hook"
+import WebSocketStatusHook from "./websocket_status_hook"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
 let Hooks = {};
 Hooks.InputNumber = InputNumberHook;
+Hooks.WebSocketStatus = WebSocketStatusHook;
+
+// Make Hooks available globally for inline scripts
+window.Hooks = Hooks;
+
+// Debug: Log connection attempt
+console.log("Initializing LiveSocket...");
+console.log("Current location:", window.location.href);
 
 let liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken},
-  hooks: Hooks
+  hooks: Hooks,
+  // Add debug logging
+  debug: true
 })
+
+// Add connection event listeners for debugging
+liveSocket.on("open", () => console.log("WebSocket opened"));
+liveSocket.on("error", (e) => console.error("WebSocket error:", e));
+liveSocket.on("close", (e) => console.log("WebSocket closed:", e))
 
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})

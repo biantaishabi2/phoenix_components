@@ -12,6 +12,7 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
      socket
      |> assign(:components, components)
      |> assign(:current_component, current_component)
+     |> assign(:sidebar_open, false)
      |> assign(:page_title, "组件展示 - #{current_component.name}")}
   end
 
@@ -28,14 +29,50 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
   end
 
   @impl true
+  def handle_event("toggle_sidebar", _params, socket) do
+    {:noreply, assign(socket, :sidebar_open, !socket.assigns.sidebar_open)}
+  end
+  
+  def handle_event("close_sidebar_mobile", _params, socket) do
+    # 只在移动端关闭侧边栏
+    {:noreply, assign(socket, :sidebar_open, false)}
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     <div class="flex h-screen bg-gray-100">
+      <!-- 移动端菜单按钮 -->
+      <button
+        phx-click="toggle_sidebar"
+        class="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-lg"
+      >
+        <.icon name="hero-bars-3" class="w-6 h-6" />
+      </button>
+
+      <!-- 侧边栏背景遮罩（移动端） -->
+      <div
+        :if={@sidebar_open}
+        class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+        phx-click="toggle_sidebar"
+      />
+
       <!-- 侧边栏 -->
-      <div class="w-64 bg-white shadow-lg overflow-y-auto">
-        <div class="p-4 border-b">
-          <h2 class="text-xl font-bold text-gray-800">组件库展示</h2>
-          <p class="text-sm text-gray-600 mt-1">Shop UX Phoenix</p>
+      <div class={[
+        "fixed lg:relative inset-y-0 left-0 z-40 w-64 bg-white shadow-lg overflow-y-auto transform transition-transform duration-300",
+        if(@sidebar_open, do: "translate-x-0", else: "-translate-x-full lg:translate-x-0")
+      ]}>
+        <div class="p-4 border-b flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">组件库展示</h2>
+            <p class="text-sm text-gray-600 mt-1">Shop UX Phoenix</p>
+          </div>
+          <button
+            phx-click="toggle_sidebar" 
+            class="lg:hidden p-1 hover:bg-gray-100 rounded"
+          >
+            <.icon name="hero-x-mark" class="w-5 h-5" />
+          </button>
         </div>
         
         <nav class="p-4">
@@ -74,36 +111,38 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
       <!-- 主内容区 -->
       <div class="flex-1 overflow-hidden">
         <!-- 顶部标题栏 -->
-        <div class="bg-white shadow-sm px-8 py-4 border-b">
-          <div class="flex items-center justify-between">
-            <div>
-              <h1 class="text-2xl font-bold text-gray-800"><%= @current_component.name %></h1>
-              <p class="text-gray-600 mt-1"><%= @current_component.description %></p>
+        <div class="bg-white shadow-sm px-4 lg:px-8 py-4 border-b">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div class="pl-12 lg:pl-0">
+              <h1 class="text-xl lg:text-2xl font-bold text-gray-800"><%= @current_component.name %></h1>
+              <p class="text-sm lg:text-base text-gray-600 mt-1"><%= @current_component.description %></p>
             </div>
-            <div class="flex gap-2">
+            <div class="flex gap-2 pl-12 lg:pl-0">
               <.link
                 navigate={"/demo/#{@current_component.id}"}
                 target="_blank"
-                class="px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+                class="px-3 lg:px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
               >
                 <.icon name="hero-arrow-top-right-on-square" class="w-4 h-4 inline mr-1" />
-                独立页面
+                <span class="hidden sm:inline">独立页面</span>
+                <span class="sm:hidden">独立</span>
               </.link>
               <.link
                 navigate={@current_component.doc_path}
-                class="px-4 py-2 text-sm bg-blue-600 text-white hover:bg-blue-700 rounded-md transition-colors"
+                class="px-3 lg:px-4 py-2 text-sm bg-blue-600 text-white hover:bg-blue-700 rounded-md transition-colors"
                 :if={@current_component.doc_path}
               >
                 <.icon name="hero-document-text" class="w-4 h-4 inline mr-1" />
-                查看文档
+                <span class="hidden sm:inline">查看文档</span>
+                <span class="sm:hidden">文档</span>
               </.link>
             </div>
           </div>
         </div>
 
         <!-- Demo 内容区 -->
-        <div class="h-full overflow-y-auto p-8">
-          <div class="max-w-7xl mx-auto">
+        <div class="h-full overflow-y-auto p-4 lg:p-8">
+          <div class="w-full">
             <%= live_render(@socket, @current_component.module, id: "component-demo-#{@current_component.id}") %>
           </div>
         </div>
@@ -123,6 +162,7 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
         <li :for={component <- @components}>
           <.link
             patch={~p"/components/showcase?component=#{component.id}"}
+            phx-click="close_sidebar_mobile"
             class={[
               "block px-3 py-2 rounded-md text-sm font-medium transition-colors",
               if(@current_component.id == component.id,

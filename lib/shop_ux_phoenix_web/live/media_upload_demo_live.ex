@@ -120,7 +120,7 @@ defmodule ShopUxPhoenixWeb.MediaUploadDemoLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="w-full px-4 sm:px-6 lg:px-8 py-8">
       <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
         MediaUpload 媒体上传组件
       </h1>

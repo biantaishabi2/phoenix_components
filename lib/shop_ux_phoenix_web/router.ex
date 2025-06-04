@@ -20,10 +20,15 @@ defmodule ShopUxPhoenixWeb.Router do
 
     get "/", PageController, :home
     get "/components", ComponentIndexController, :index
+    get "/docs/*path", DocController, :show
     live "/components-demo", ComponentsDemoLive
     
     # 新的组件展示页面
     live "/components/showcase", ComponentShowcaseLive
+    
+    # Debug page
+    live "/debug", DebugLive
+    live "/minimal", MinimalTestLive
     
     # Component demo routes
     live "/components/table", TableDemoLive

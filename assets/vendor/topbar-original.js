@@ -162,7 +162,4 @@
   } else {
     this.topbar = topbar;
   }
-}.call(window, window, document));
-
-// ES6 export for module environments
-export default window.topbar;
+}.call(this, window, document));

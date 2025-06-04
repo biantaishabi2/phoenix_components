@@ -58,7 +58,8 @@ defmodule ShopUxPhoenix.MixProject do
       {:petal_components, "~> 2.0"},
       {:elixlsx, "~> 0.6.0"},
       {:xlsxir, "~> 1.6"},
-      {:nimble_csv, "~> 1.1"}
+      {:nimble_csv, "~> 1.1"},
+      {:earmark, "~> 1.4"}
     ]
   end
 
