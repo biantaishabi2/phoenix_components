@@ -22,6 +22,9 @@ defmodule ShopUxPhoenixWeb.Router do
     get "/components", ComponentIndexController, :index
     live "/components-demo", ComponentsDemoLive
     
+    # 新的组件展示页面
+    live "/components/showcase", ComponentShowcaseLive
+    
     # Component demo routes
     live "/components/table", TableDemoLive
     live "/components/date_picker", DatePickerDemoLive
@@ -49,6 +52,35 @@ defmodule ShopUxPhoenixWeb.Router do
     live "/components/form_builder", FormBuilderDemoLive
     live "/components/media_upload", MediaUploadDemoLive
     live "/components/tag", ComponentsDemoLive
+    
+    # 独立 demo 页面路由（用于新标签页打开）
+    scope "/demo", as: :demo do
+      live "/table", TableDemoLive
+      live "/form_builder", FormBuilderDemoLive
+      live "/select", SelectDemoLive
+      live "/searchable_select", SearchableSelectDemoLive
+      live "/tree_select", TreeSelectDemoLive
+      live "/cascader", CascaderDemoLive
+      live "/date_picker", DatePickerDemoLive
+      live "/range_picker", RangePickerDemoLive
+      live "/input_number", InputNumberDemoLive
+      live "/switch", SwitchDemoLive
+      live "/address_selector", AddressSelectorDemoLive
+      live "/media_upload", MediaUploadDemoLive
+      live "/card", CardDemoLive
+      live "/statistic", StatisticDemoLive
+      live "/timeline", TimelineDemoLive
+      live "/progress", ProgressDemoLive
+      live "/app_layout", AppLayoutDemoLive
+      live "/tabs", TabsDemoLive
+      live "/steps", StepsDemoLive
+      live "/breadcrumb", BreadcrumbDemoLive
+      live "/filter_form", FilterFormDemoLive
+      live "/action_buttons", ActionButtonsDemoLive
+      live "/dropdown", DropdownDemoLive
+      live "/tooltip", TooltipDemoLive
+      live "/status_badge", StatusBadgeDemoLive
+    end
     
     # Test route for component testing
     if Mix.env() == :test do
