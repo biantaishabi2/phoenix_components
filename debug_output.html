@@ -1,0 +1,101 @@
+<html lang="en" class="[scrollbar-gutter:stable]"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="csrf-token" content="cUBmeDsQBhcLbR8AGQ8YPiIlHjJufiRGC29-JWVrbUQfIKhmfMfE97at"/><title data-default="ShopUxPhoenix" data-suffix=" · Phoenix Framework">
+      MediaUpload 媒体上传组件
+     · Phoenix Framework</title><link phx-track-static="phx-track-static" rel="stylesheet" href="/assets/app.css"/><script defer="defer" phx-track-static="phx-track-static" type="text/javascript" src="/assets/app.js">
+    </script></head><body class="bg-white"><div id="phx-GEWVhsncdRWhcCIC" data-phx-main="data-phx-main" data-phx-session="SFMyNTY.g2gDaAJhBnQAAAAIdwJpZG0AAAAUcGh4LUdFV1Zoc25jZFJXaGNDSUN3B3Nlc3Npb250AAAAAHcKcGFyZW50X3BpZHcDbmlsdwR2aWV3dytFbGl4aXIuU2hvcFV4UGhvZW5peFdlYi5NZWRpYVVwbG9hZERlbW9MaXZldwhyb290X3BpZHcDbmlsdwZyb3V0ZXJ3HkVsaXhpci5TaG9wVXhQaG9lbml4V2ViLlJvdXRlcncJcm9vdF92aWV3dytFbGl4aXIuU2hvcFV4UGhvZW5peFdlYi5NZWRpYVVwbG9hZERlbW9MaXZldxFsaXZlX3Nlc3Npb25fbmFtZXcHZGVmYXVsdG4GAOBypDaXAWIAAVGA.kNheSOPa7UknUqQwsR1DC_WjtzYP-hvO2kpSSQnhidQ" data-phx-static="SFMyNTY.g2gDaAJhBnQAAAADdwJpZG0AAAAUcGh4LUdFV1Zoc25jZFJXaGNDSUN3BWZsYXNodAAAAAB3CmFzc2lnbl9uZXdqbgYA4HKkNpcBYgABUYA.FVQ5h9mCnsBlZ3V9NV4tfJnhZrdb3z1TlHqWNxkgVXI"><header class="px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm"><div class="flex items-center gap-4"><a href="/"><img src="/images/logo.svg" width="36"/></a><p class="bg-brand/5 text-brand rounded-full px-2 font-medium leading-6">
+        v1.7.21
+      </p></div><div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900"><a href="https://twitter.com/elixirphoenix" class="hover:text-zinc-700">
+        @elixirphoenix
+      </a><a href="https://github.com/phoenixframework/phoenix" class="hover:text-zinc-700">
+        GitHub
+      </a><a href="https://hexdocs.pm/phoenix/overview.html" class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80">
+        Get Started <span aria-hidden="true">→</span></a></div></div></header><main class="px-4 py-20 sm:px-6 lg:px-8"><div class="mx-auto max-w-2xl"><div id="flash-group"><div id="client-error" phx-click="[[&quot;push&quot;,{&quot;value&quot;:{&quot;key&quot;:&quot;error&quot;},&quot;event&quot;:&quot;lv:clear-flash&quot;}],[&quot;hide&quot;,{&quot;time&quot;:200,&quot;to&quot;:&quot;#client-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;transform&quot;,&quot;ease-in&quot;,&quot;duration-200&quot;],[&quot;opacity-100&quot;,&quot;translate-y-0&quot;,&quot;sm:scale-100&quot;],[&quot;opacity-0&quot;,&quot;translate-y-4&quot;,&quot;sm:translate-y-0&quot;,&quot;sm:scale-95&quot;]]}]]" role="alert" class="fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1 bg-rose-50 text-rose-900 shadow-md ring-rose-500 fill-rose-900" hidden="hidden" phx-connected="[[&quot;hide&quot;,{&quot;time&quot;:200,&quot;to&quot;:&quot;#client-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;transform&quot;,&quot;ease-in&quot;,&quot;duration-200&quot;],[&quot;opacity-100&quot;,&quot;translate-y-0&quot;,&quot;sm:scale-100&quot;],[&quot;opacity-0&quot;,&quot;translate-y-4&quot;,&quot;sm:translate-y-0&quot;,&quot;sm:scale-95&quot;]]}]]" phx-disconnected="[[&quot;show&quot;,{&quot;time&quot;:300,&quot;to&quot;:&quot;.phx-client-error #client-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;transform&quot;,&quot;ease-out&quot;,&quot;duration-300&quot;],[&quot;opacity-0&quot;,&quot;translate-y-4&quot;,&quot;sm:translate-y-0&quot;,&quot;sm:scale-95&quot;],[&quot;opacity-100&quot;,&quot;translate-y-0&quot;,&quot;sm:scale-100&quot;]]}]]"><p class="flex items-center gap-1.5 text-sm font-semibold leading-6"><span class="hero-exclamation-circle-mini h-4 w-4"></span>
+    We can&#39;t find the internet
+  </p><p class="mt-2 text-sm leading-5">
+    Attempting to reconnect
+    <span class="hero-arrow-path ml-1 h-3 w-3 animate-spin"></span></p><button type="button" class="group absolute top-1 right-1 p-2" aria-label="close"><span class="hero-x-mark-solid h-5 w-5 opacity-40 group-hover:opacity-70"></span></button></div><div id="server-error" phx-click="[[&quot;push&quot;,{&quot;value&quot;:{&quot;key&quot;:&quot;error&quot;},&quot;event&quot;:&quot;lv:clear-flash&quot;}],[&quot;hide&quot;,{&quot;time&quot;:200,&quot;to&quot;:&quot;#server-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;transform&quot;,&quot;ease-in&quot;,&quot;duration-200&quot;],[&quot;opacity-100&quot;,&quot;translate-y-0&quot;,&quot;sm:scale-100&quot;],[&quot;opacity-0&quot;,&quot;translate-y-4&quot;,&quot;sm:translate-y-0&quot;,&quot;sm:scale-95&quot;]]}]]" role="alert" class="fixed top-2 right-2 mr-2 w-80 sm:w-96 z-50 rounded-lg p-3 ring-1 bg-rose-50 text-rose-900 shadow-md ring-rose-500 fill-rose-900" hidden="hidden" phx-connected="[[&quot;hide&quot;,{&quot;time&quot;:200,&quot;to&quot;:&quot;#server-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;transform&quot;,&quot;ease-in&quot;,&quot;duration-200&quot;],[&quot;opacity-100&quot;,&quot;translate-y-0&quot;,&quot;sm:scale-100&quot;],[&quot;opacity-0&quot;,&quot;translate-y-4&quot;,&quot;sm:translate-y-0&quot;,&quot;sm:scale-95&quot;]]}]]" phx-disconnected="[[&quot;show&quot;,{&quot;time&quot;:300,&quot;to&quot;:&quot;.phx-server-error #server-error&quot;,&quot;transition&quot;:[[&quot;transition-all&quot;,&quot;transform&quot;,&quot;ease-out&quot;,&quot;duration-300&quot;],[&quot;opacity-0&quot;,&quot;translate-y-4&quot;,&quot;sm:translate-y-0&quot;,&quot;sm:scale-95&quot;],[&quot;opacity-100&quot;,&quot;translate-y-0&quot;,&quot;sm:scale-100&quot;]]}]]"><p class="flex items-center gap-1.5 text-sm font-semibold leading-6"><span class="hero-exclamation-circle-mini h-4 w-4"></span>
+    Something went wrong!
+  </p><p class="mt-2 text-sm leading-5">
+    Hang in there while we get back on track
+    <span class="hero-arrow-path ml-1 h-3 w-3 animate-spin"></span></p><button type="button" class="group absolute top-1 right-1 p-2" aria-label="close"><span class="hero-x-mark-solid h-5 w-5 opacity-40 group-hover:opacity-70"></span></button></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
+    MediaUpload 媒体上传组件
+  </h1><div class="space-y-12"><!-- 基本使用 --><section><h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">基本使用</h2><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div class="pc-media-upload pc-media-upload--preview-medium pc-media-upload--layout-grid "><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    商品图片
+  </div><form id="product_images-form" phx-submit="save-product_images" phx-change="validate-product_images"><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800"><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+        拖拽文件到这里，或
+        <label class="cursor-pointer text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+          点击选择文件
+        </label></p><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+        支持格式： | 
+        最大 10.0 MB | 
+        最多 5 个文件
+      </p></div></form></div><!-- 已上传的文件 --></div></section><!-- 单文件上传（头像） --><section><h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">单文件上传</h2><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div class="pc-media-upload pc-media-upload--preview-large pc-media-upload--layout-grid "><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    用户头像
+  </div><form id="avatar-form" phx-submit="save-avatar" phx-change="validate-avatar"><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800"><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+        拖拽文件到这里，或
+        <label class="cursor-pointer text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+          点击选择文件
+        </label></p><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+        支持格式： | 
+        最大 10.0 MB | 
+        最多 5 个文件
+      </p></div></form></div></div></section><!-- 文档上传 --><section><h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">文档上传</h2><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div class="pc-media-upload pc-media-upload--preview-medium pc-media-upload--layout-list "><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    上传文档
+  </div><form id="documents-form" phx-submit="save-documents" phx-change="validate-documents"><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800"><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+        拖拽文件到这里，或
+        <label class="cursor-pointer text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+          点击选择文件
+        </label></p><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+        支持格式： | 
+        最大 10.0 MB | 
+        最多 5 个文件
+      </p></div></form></div></div></section><!-- 静态展示（不需要实际上传功能） --><section><h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">静态展示</h2><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div id="static-demo" class="pc-media-upload pc-media-upload--preview-medium pc-media-upload--layout-grid "><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    证件照片
+  </div><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800" phx-drop-target="static-demo-upload" data-uploading-text="上传中..."><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+      
+        拖拽文件到这里，或点击选择文件
+      
+    </p><input type="file" class="pc-media-upload__input hidden" accept=".jpg,.jpeg,.png" multiple="multiple" phx-change="validate-static-demo"/><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+      支持格式：.jpg, .jpeg, .png | 
+      最大 5.0 MB | 
+      最多 2 个文件
+    </p></div><div class="pc-media-upload__list mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4"></div></div></div></section><!-- 不同预览尺寸 --><section><h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">预览尺寸</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><h3 class="text-lg font-medium mb-4">小尺寸</h3><div id="small-preview" class="pc-media-upload pc-media-upload--preview-small pc-media-upload--layout-grid "><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    小图预览
+  </div><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800" phx-drop-target="small-preview-upload" data-uploading-text="上传中..."><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+      
+        拖拽文件到这里，或点击选择文件
+      
+    </p><input type="file" class="pc-media-upload__input hidden" accept=".jpg,.jpeg,.png,.gif,.webp" multiple="multiple" phx-change="validate-small-preview"/><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+      支持格式：.jpg, .jpeg, .png, .gif, .webp | 
+      最大 10.0 MB | 
+      最多 5 个文件
+    </p></div><div class="pc-media-upload__list mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4"></div></div></div><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><h3 class="text-lg font-medium mb-4">中等尺寸</h3><div id="medium-preview" class="pc-media-upload pc-media-upload--preview-medium pc-media-upload--layout-grid "><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    中图预览
+  </div><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800" phx-drop-target="medium-preview-upload" data-uploading-text="上传中..."><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+      
+        拖拽文件到这里，或点击选择文件
+      
+    </p><input type="file" class="pc-media-upload__input hidden" accept=".jpg,.jpeg,.png,.gif,.webp" multiple="multiple" phx-change="validate-medium-preview"/><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+      支持格式：.jpg, .jpeg, .png, .gif, .webp | 
+      最大 10.0 MB | 
+      最多 5 个文件
+    </p></div><div class="pc-media-upload__list mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4"></div></div></div><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><h3 class="text-lg font-medium mb-4">大尺寸</h3><div id="large-preview" class="pc-media-upload pc-media-upload--preview-large pc-media-upload--layout-grid "><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    大图预览
+  </div><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800" phx-drop-target="large-preview-upload" data-uploading-text="上传中..."><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+      
+        拖拽文件到这里，或点击选择文件
+      
+    </p><input type="file" class="pc-media-upload__input hidden" accept=".jpg,.jpeg,.png,.gif,.webp" multiple="multiple" phx-change="validate-large-preview"/><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+      支持格式：.jpg, .jpeg, .png, .gif, .webp | 
+      最大 10.0 MB | 
+      最多 5 个文件
+    </p></div><div class="pc-media-upload__list mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4"></div></div></div></div></section><!-- 自定义配置 --><section><h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">自定义配置</h2><div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"><div id="custom-config" class="pc-media-upload pc-media-upload--preview-medium pc-media-upload--layout-grid border-4 border-blue-200"><div class="pc-media-upload__label text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    营业执照
+  </div><div class="pc-media-upload__drop-zone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-800" phx-drop-target="custom-config-upload" data-uploading-text="上传中..."><svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewbox="0 0 48 48"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+      
+        请上传营业执照扫描件（支持JPG、PNG、PDF格式）
+      
+    </p><input type="file" class="pc-media-upload__input hidden" accept=".jpg,.jpeg,.png,.pdf" multiple="multiple" phx-change="validate-custom-config"/><p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+      支持格式：.jpg, .jpeg, .png, .pdf | 
+      最大 15.0 MB | 
+      最多 3 个文件
+    </p></div><div class="pc-media-upload__list mt-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4"></div></div></div></section></div></div></div></main></div></body></html>
