@@ -10,8 +10,7 @@ module.exports = {
     "./js/**/*.js",
     "../lib/shop_ux_phoenix_web.ex",
     "../lib/shop_ux_phoenix_web/**/*.*ex",
-    "../deps/petal_components/**/*.*ex",
-    "./css/**/*.css"  // 添加CSS文件以确保样式被扫描
+    "../deps/petal_components/**/*.*ex"
   ],
   safelist: [
     // 保留所有 pc- 开头的类
@@ -20,8 +19,15 @@ module.exports = {
     },
     // 保留所有 hero- 开头的图标类
     {
-      pattern: /^hero-/,
-    }
+      pattern: /^hero-.+/,
+      variants: ['hover', 'group-hover']
+    },
+    // 明确保留一些文本颜色类
+    'text-gray-700',
+    'text-gray-600',
+    'text-primary-600',
+    'group-hover:text-primary-600',
+    'group-hover:text-blue-600'
   ],
   theme: {
     extend: {
@@ -141,6 +147,10 @@ module.exports = {
       })
       matchComponents({
         "hero": ({name, fullPath}) => {
+          if (!fullPath) {
+            console.warn(`Missing fullPath for icon: ${name}`)
+            return {}
+          }
           let content = fs.readFileSync(fullPath).toString().replace(/\r?\n|\r/g, "")
           let size = theme("spacing.6")
           if (name.endsWith("-mini")) {

@@ -10,7 +10,7 @@ defmodule ShopUxPhoenixWeb.AppLayoutDemoLive do
      |> assign(:sidebar_collapsed, false)
      |> assign(:current_user, %{
        name: "张三",
-       company: "北京云动幸福科技有限公司"
+       company: "示例科技有限公司"
      })
      |> assign(:notifications_count, 5)
      |> assign(:breadcrumbs, [

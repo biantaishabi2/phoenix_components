@@ -406,7 +406,7 @@ defmodule ShopUxPhoenixWeb.PetalComponentsDemoLive do
           </.card>
           
           <.card>
-            <.card_media src="https://via.placeholder.com/400x200" />
+            <.card_media src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" />
             <.card_content heading="带图片的卡片">
               <p class="text-gray-600">这个卡片包含了一个媒体区域。</p>
             </.card_content>
@@ -428,7 +428,7 @@ defmodule ShopUxPhoenixWeb.PetalComponentsDemoLive do
           </.button>
         </div>
         
-        <.modal id="demo-modal">
+        <.modal id="demo-modal" hide={true}>
           <div class="mb-4">
             <h3 class="text-lg font-semibold">模态框标题</h3>
           </div>
@@ -443,7 +443,7 @@ defmodule ShopUxPhoenixWeb.PetalComponentsDemoLive do
           </div>
         </.modal>
         
-        <.modal id="large-modal" max_width="lg">
+        <.modal id="large-modal" max_width="lg" hide={true}>
           <div class="mb-4">
             <h3 class="text-lg font-semibold">大尺寸模态框</h3>
           </div>

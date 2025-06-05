@@ -62,6 +62,7 @@ defmodule ShopUxPhoenixWeb.Router do
     live "/components/tag", ComponentsDemoLive
     live "/components/petal", PetalComponentsDemoLive
     live "/components/petal_data", PetalDataComponentsDemoLive
+    live "/components/icon_gallery", IconGalleryLive
     live "/css_test", CssTestLive
     
     # 独立 demo 页面路由（用于新标签页打开）
@@ -93,6 +94,7 @@ defmodule ShopUxPhoenixWeb.Router do
       live "/status_badge", StatusBadgeDemoLive
       live "/petal", PetalComponentsDemoLive
       live "/petal_data", PetalDataComponentsDemoLive
+      live "/icon_gallery", IconGalleryLive
     end
     
     # Test route for component testing
