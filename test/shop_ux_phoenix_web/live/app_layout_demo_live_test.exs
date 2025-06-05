@@ -59,7 +59,7 @@ defmodule ShopUxPhoenixWeb.AppLayoutDemoLiveTest do
       
       # 检查用户信息
       assert render(view) =~ "张三"
-      assert render(view) =~ "北京云动幸福科技有限公司"
+      assert render(view) =~ "示例科技有限公司"
     end
 
     test "shows notification badge", %{conn: conn} do
