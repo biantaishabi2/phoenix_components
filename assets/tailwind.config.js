@@ -17,6 +17,10 @@ module.exports = {
     // 保留所有 pc- 开头的类
     {
       pattern: /^pc-/,
+    },
+    // 保留所有 hero- 开头的图标类
+    {
+      pattern: /^hero-/,
     }
   ],
   theme: {

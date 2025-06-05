@@ -508,6 +508,435 @@ defmodule ShopUxPhoenixWeb.PetalComponentsDemoLive do
           <.spinner color="info" />
         </div>
       </section>
+      
+      <!-- Heroicons 图标展示 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Heroicons 图标库</h2>
+        
+        <div class="mb-6">
+          <p class="text-gray-600 mb-4">
+            PetalComponents 使用 Heroicons 图标库。以下是常用的图标示例，图标名称格式为 "hero-[icon-name]"。
+          </p>
+        </div>
+        
+        <!-- 常用图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">常用图标</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-home" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">home</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-user" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">user</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-users" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">users</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-cog" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">cog</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-cog-6-tooth" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">cog-6-tooth</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-heart" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">heart</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-star" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">star</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-bell" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">bell</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-envelope" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">envelope</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-phone" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">phone</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 操作图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">操作图标</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-plus" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">plus</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-minus" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">minus</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-x-mark" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">x-mark</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-check" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">check</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-pencil" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">pencil</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-pencil-square" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">pencil-square</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-trash" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">trash</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-document-duplicate" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">document-duplicate</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-clipboard" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">clipboard</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-arrow-path" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">arrow-path</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 导航图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">导航图标</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-arrow-left" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">arrow-left</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-arrow-right" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">arrow-right</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-arrow-up" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">arrow-up</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-arrow-down" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">arrow-down</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-chevron-left" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">chevron-left</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-chevron-right" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">chevron-right</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-chevron-up" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">chevron-up</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-chevron-down" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">chevron-down</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-bars-3" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">bars-3</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-ellipsis-horizontal" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">ellipsis-horizontal</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 状态图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">状态图标</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-check-circle" class="w-6 h-6 mb-1 text-green-500" />
+              <span class="text-xs text-gray-600">check-circle</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-x-circle" class="w-6 h-6 mb-1 text-red-500" />
+              <span class="text-xs text-gray-600">x-circle</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-exclamation-circle" class="w-6 h-6 mb-1 text-yellow-500" />
+              <span class="text-xs text-gray-600">exclamation-circle</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-information-circle" class="w-6 h-6 mb-1 text-blue-500" />
+              <span class="text-xs text-gray-600">information-circle</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-exclamation-triangle" class="w-6 h-6 mb-1 text-orange-500" />
+              <span class="text-xs text-gray-600">exclamation-triangle</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-question-mark-circle" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">question-mark-circle</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-lock-closed" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">lock-closed</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-lock-open" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">lock-open</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-shield-check" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">shield-check</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-eye" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">eye</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 文件和文档图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">文件和文档</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-document" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">document</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-document-text" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">document-text</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-folder" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">folder</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-folder-open" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">folder-open</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-paper-clip" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">paper-clip</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-photo" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">photo</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-cloud-arrow-up" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">cloud-arrow-up</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-cloud-arrow-down" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">cloud-arrow-down</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-archive-box" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">archive-box</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-printer" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">printer</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 商务和金融图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">商务和金融</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-shopping-cart" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">shopping-cart</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-shopping-bag" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">shopping-bag</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-credit-card" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">credit-card</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-banknotes" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">banknotes</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-chart-bar" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">chart-bar</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-chart-pie" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">chart-pie</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-presentation-chart-line" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">presentation-chart-line</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-calculator" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">calculator</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-receipt-percent" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">receipt-percent</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-building-office" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">building-office</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 媒体图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">媒体控制</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-play" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">play</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-pause" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">pause</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-stop" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">stop</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-forward" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">forward</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-backward" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">backward</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-speaker-wave" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">speaker-wave</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-speaker-x-mark" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">speaker-x-mark</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-microphone" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">microphone</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-camera" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">camera</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-video-camera" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">video-camera</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 其他实用图标 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">其他实用图标</h3>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-magnifying-glass" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">magnifying-glass</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-magnifying-glass-plus" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">magnifying-glass-plus</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-globe-alt" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">globe-alt</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-map-pin" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">map-pin</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-calendar" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">calendar</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-clock" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">clock</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-tag" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">tag</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-hashtag" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">hashtag</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-at-symbol" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">at-symbol</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-gray-50 rounded">
+              <.icon name="hero-link" class="w-6 h-6 mb-1 text-gray-700" />
+              <span class="text-xs text-gray-600">link</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 图标尺寸示例 -->
+        <div class="mb-8">
+          <h3 class="text-lg font-medium mb-3">图标尺寸</h3>
+          <div class="flex items-center gap-6">
+            <div class="text-center">
+              <.icon name="hero-heart" class="w-4 h-4 text-red-500 mb-1" />
+              <p class="text-xs text-gray-600">w-4 h-4</p>
+            </div>
+            <div class="text-center">
+              <.icon name="hero-heart" class="w-5 h-5 text-red-500 mb-1" />
+              <p class="text-xs text-gray-600">w-5 h-5</p>
+            </div>
+            <div class="text-center">
+              <.icon name="hero-heart" class="w-6 h-6 text-red-500 mb-1" />
+              <p class="text-xs text-gray-600">w-6 h-6</p>
+            </div>
+            <div class="text-center">
+              <.icon name="hero-heart" class="w-8 h-8 text-red-500 mb-1" />
+              <p class="text-xs text-gray-600">w-8 h-8</p>
+            </div>
+            <div class="text-center">
+              <.icon name="hero-heart" class="w-10 h-10 text-red-500 mb-1" />
+              <p class="text-xs text-gray-600">w-10 h-10</p>
+            </div>
+            <div class="text-center">
+              <.icon name="hero-heart" class="w-12 h-12 text-red-500 mb-1" />
+              <p class="text-xs text-gray-600">w-12 h-12</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 使用说明 -->
+        <div class="bg-blue-50 p-4 rounded-lg">
+          <h4 class="font-medium text-blue-900 mb-2">使用说明</h4>
+          <ul class="text-sm text-blue-800 space-y-1">
+            <li>• 图标名称格式：<code class="bg-blue-100 px-1 rounded">hero-[icon-name]</code></li>
+            <li>• 可以通过 class 属性设置尺寸和颜色：<code class="bg-blue-100 px-1 rounded">class="w-6 h-6 text-blue-500"</code></li>
+            <li>• 支持所有 Tailwind CSS 的工具类</li>
+            <li>• 完整图标列表请访问：<a href="https://heroicons.com/" target="_blank" class="underline">heroicons.com</a></li>
+          </ul>
+        </div>
+      </section>
     </div>
     """
   end
