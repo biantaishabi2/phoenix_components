@@ -1,6 +1,10 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* Import PetalComponents default styles first */
+@import "../../deps/petal_components/assets/default.css";
+
+/* Then Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* This file is for your main application CSS */
 
@@ -172,4 +176,3 @@
     display: none;
   }
 }
-

@@ -72,10 +72,10 @@ defmodule ShopUxPhoenix.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "assets.setup", "assets.build"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind shop_ux_phoenix", "esbuild shop_ux_phoenix"],
+      "assets.setup": ["cmd --cd assets npm install", "esbuild.install --if-missing"],
+      "assets.build": ["cmd --cd assets npx postcss css/app.css -o ../priv/static/assets/app.css", "esbuild shop_ux_phoenix"],
       "assets.deploy": [
-        "tailwind shop_ux_phoenix --minify",
+        "cmd --cd assets npx postcss css/app.css -o ../priv/static/assets/app.css --env production",
         "esbuild shop_ux_phoenix --minify",
         "phx.digest"
       ]

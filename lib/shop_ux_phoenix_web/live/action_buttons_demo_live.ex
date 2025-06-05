@@ -228,7 +228,7 @@ defmodule ShopUxPhoenixWeb.ActionButtonsDemoLive do
       <!-- 垂直布局 -->
       <section class="mb-12">
         <h2 class="text-2xl font-semibold text-gray-900 mb-4">垂直布局</h2>
-        <div class="bg-white p-6 rounded-lg shadow max-w-xs">
+        <div class="bg-white p-6 rounded-lg shadow">
           <.action_buttons direction="vertical" spacing="small">
             <.button class="w-full justify-start">
               <.icon name="hero-user" class="w-4 h-4 mr-2" />

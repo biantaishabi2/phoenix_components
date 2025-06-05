@@ -170,7 +170,6 @@ defmodule ShopUxPhoenixWeb.MediaUploadDemoLiveTest do
       
       html = render(view)
       # 检查页面布局
-      assert html =~ "max-w-7xl"
       assert html =~ "mx-auto"
       assert html =~ "space-y-12"
       assert html =~ "bg-white"

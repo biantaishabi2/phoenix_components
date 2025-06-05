@@ -28,7 +28,10 @@ defmodule ShopUxPhoenixWeb.Router do
     
     # Debug page
     live "/debug", DebugLive
+    live "/simple_debug", SimpleDebugLive
     live "/minimal", MinimalTestLive
+    get "/test_ws", TestController, :index
+    live "/ws_test", WebSocketTestLive
     
     # Component demo routes
     live "/components/table", TableDemoLive
@@ -57,6 +60,9 @@ defmodule ShopUxPhoenixWeb.Router do
     live "/components/form_builder", FormBuilderDemoLive
     live "/components/media_upload", MediaUploadDemoLive
     live "/components/tag", ComponentsDemoLive
+    live "/components/petal", PetalComponentsDemoLive
+    live "/components/petal_data", PetalDataComponentsDemoLive
+    live "/css_test", CssTestLive
     
     # 独立 demo 页面路由（用于新标签页打开）
     scope "/demo", as: :demo do
@@ -85,6 +91,8 @@ defmodule ShopUxPhoenixWeb.Router do
       live "/dropdown", DropdownDemoLive
       live "/tooltip", TooltipDemoLive
       live "/status_badge", StatusBadgeDemoLive
+      live "/petal", PetalComponentsDemoLive
+      live "/petal_data", PetalDataComponentsDemoLive
     end
     
     # Test route for component testing

@@ -165,4 +165,7 @@
 }.call(window, window, document));
 
 // ES6 export for module environments
-export default window.topbar;
+if (typeof window !== "undefined") {
+  window.topbar = topbar;
+}
+export default topbar;

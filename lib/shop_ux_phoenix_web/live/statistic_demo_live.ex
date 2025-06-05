@@ -304,7 +304,7 @@ defmodule ShopUxPhoenixWeb.StatisticDemoLive do
           </button>
         </div>
         
-        <div class="bg-white p-6 rounded-lg shadow max-w-md">
+        <div class="bg-white p-6 rounded-lg shadow">
           <.statistic 
             id="precision-demo"
             title="精度演示 (π值)"

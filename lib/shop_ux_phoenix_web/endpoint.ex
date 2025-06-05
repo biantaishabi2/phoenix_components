@@ -12,7 +12,29 @@ defmodule ShopUxPhoenixWeb.Endpoint do
   ]
 
   socket "/live", Phoenix.LiveView.Socket,
-    websocket: [connect_info: [session: @session_options]],
+    websocket: [connect_info: [session: @session_options, x_headers: ["x-forwarded-for", "x-forwarded-proto", "x-forwarded-port"]]],
+    longpoll: [connect_info: [session: @session_options]]
+  
+  # 为不同路径添加 socket，确保 nginx 路由的请求能被正确处理
+  for path <- ~w(components demo debug simple_debug test_ws minimal ws_test docs) do
+    socket "/#{path}/live", Phoenix.LiveView.Socket,
+      websocket: [connect_info: [session: @session_options, x_headers: ["x-forwarded-for", "x-forwarded-proto", "x-forwarded-port"]]],
+      longpoll: [connect_info: [session: @session_options]]
+  end
+  
+  # 为 showcase 添加专门的 socket 路径
+  socket "/components/showcase/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options, x_headers: ["x-forwarded-for", "x-forwarded-proto", "x-forwarded-port"]]],
+    longpoll: [connect_info: [session: @session_options]]
+  
+  # 为 petal 添加专门的 socket 路径
+  socket "/components/petal/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options, x_headers: ["x-forwarded-for", "x-forwarded-proto", "x-forwarded-port"]]],
+    longpoll: [connect_info: [session: @session_options]]
+  
+  # 为 demo/petal 添加专门的 socket 路径
+  socket "/demo/petal/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options, x_headers: ["x-forwarded-for", "x-forwarded-proto", "x-forwarded-port"]]],
     longpoll: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.

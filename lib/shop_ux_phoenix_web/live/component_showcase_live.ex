@@ -12,7 +12,7 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
      socket
      |> assign(:components, components)
      |> assign(:current_component, current_component)
-     |> assign(:sidebar_open, false)
+     |> assign(:sidebar_open, true)
      |> assign(:page_title, "组件展示 - #{current_component.name}")}
   end
 
@@ -42,10 +42,13 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
   def render(assigns) do
     ~H"""
     <div class="flex h-screen bg-gray-100">
-      <!-- 移动端菜单按钮 -->
+      <!-- 菜单按钮 -->
       <button
         phx-click="toggle_sidebar"
-        class="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-lg"
+        class={[
+          "fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-lg transition-opacity",
+          if(@sidebar_open, do: "opacity-0 pointer-events-none", else: "opacity-100")
+        ]}
       >
         <.icon name="hero-bars-3" class="w-6 h-6" />
       </button>
@@ -59,8 +62,8 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
 
       <!-- 侧边栏 -->
       <div class={[
-        "fixed lg:relative inset-y-0 left-0 z-40 w-64 bg-white shadow-lg overflow-y-auto transform transition-transform duration-300",
-        if(@sidebar_open, do: "translate-x-0", else: "-translate-x-full lg:translate-x-0")
+        "fixed inset-y-0 left-0 z-40 w-64 bg-white shadow-lg overflow-y-auto transform transition-transform duration-300",
+        if(@sidebar_open, do: "translate-x-0", else: "-translate-x-full")
       ]}>
         <div class="p-4 border-b flex items-center justify-between">
           <div>
@@ -69,7 +72,7 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
           </div>
           <button
             phx-click="toggle_sidebar" 
-            class="lg:hidden p-1 hover:bg-gray-100 rounded"
+            class="p-1 hover:bg-gray-100 rounded"
           >
             <.icon name="hero-x-mark" class="w-5 h-5" />
           </button>
@@ -105,19 +108,30 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
             components={filter_by_category(@components, :other)}
             current_component={@current_component}
           />
+          
+          <.component_category 
+            title="Petal Components" 
+            components={filter_by_category(@components, :petal)}
+            current_component={@current_component}
+          />
         </nav>
       </div>
 
       <!-- 主内容区 -->
-      <div class="flex-1 overflow-hidden">
+      <div class={[
+        "flex-1 overflow-hidden transition-all duration-300",
+        if(@sidebar_open, do: "pl-64", else: "pl-0")
+      ]}>
         <!-- 顶部标题栏 -->
         <div class="bg-white shadow-sm px-4 lg:px-8 py-4 border-b">
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div class="pl-12 lg:pl-0">
+            <div class={[
+              if(@sidebar_open, do: "pl-0", else: "pl-14")
+            ]}>
               <h1 class="text-xl lg:text-2xl font-bold text-gray-800"><%= @current_component.name %></h1>
               <p class="text-sm lg:text-base text-gray-600 mt-1"><%= @current_component.description %></p>
             </div>
-            <div class="flex gap-2 pl-12 lg:pl-0">
+            <div class="flex gap-2">
               <.link
                 navigate={"/demo/#{@current_component.id}"}
                 target="_blank"
@@ -388,6 +402,16 @@ defmodule ShopUxPhoenixWeb.ComponentShowcaseLive do
         category: :feedback,
         module: ShopUxPhoenixWeb.StatusBadgeDemoLive,
         doc_path: "/docs/components/status_badge_doc.md"
+      },
+      
+      # Petal Components
+      %{
+        id: "petal",
+        name: "Petal 组件库",
+        description: "Petal Components 提供的原生组件演示",
+        category: :petal,
+        module: ShopUxPhoenixWeb.PetalComponentsDemoLive,
+        doc_path: nil
       }
     ]
   end

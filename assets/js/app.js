@@ -30,6 +30,28 @@ let Hooks = {};
 Hooks.InputNumber = InputNumberHook;
 Hooks.WebSocketStatus = WebSocketStatusHook;
 
+// Add StopReload hook to prevent page reload during debugging
+Hooks.StopReload = {
+  mounted() {
+    console.log("StopReload hook mounted - preventing auto-reload");
+    // Store original reload function
+    if (!window._originalReload) {
+      window._originalReload = window.location.reload;
+      // Override reload to prevent it
+      window.location.reload = function() {
+        console.log("Reload prevented by StopReload hook");
+      };
+    }
+  },
+  destroyed() {
+    // Restore original reload function
+    if (window._originalReload) {
+      window.location.reload = window._originalReload;
+      delete window._originalReload;
+    }
+  }
+};
+
 // Make Hooks available globally for inline scripts
 window.Hooks = Hooks;
 
@@ -37,7 +59,27 @@ window.Hooks = Hooks;
 console.log("Initializing LiveSocket...");
 console.log("Current location:", window.location.href);
 
-let liveSocket = new LiveSocket("/live", Socket, {
+// Force HTTPS detection for proxied environments
+const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+const currentPath = window.location.pathname;
+
+// 根据当前路径决定WebSocket URL
+let liveUrl;
+if (currentPath.match(/^\/(components|demo|debug|simple_debug|test_ws|minimal|ws_test|docs)/)) {
+  // 对于components_app的页面，使用带路径前缀的WebSocket URL
+  // 这样nginx可以根据路径正确路由
+  liveUrl = `${protocol}//${window.location.host}${currentPath}/live`;
+} else {
+  // 对于主应用的页面，使用默认路径
+  liveUrl = `${protocol}//${window.location.host}/live`;
+}
+
+console.log("LiveSocket URL:", liveUrl);
+console.log("Current protocol:", window.location.protocol);
+console.log("Current host:", window.location.host);
+console.log("Current path:", currentPath);
+
+let liveSocket = new LiveSocket(liveUrl, Socket, {
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken},
   hooks: Hooks,

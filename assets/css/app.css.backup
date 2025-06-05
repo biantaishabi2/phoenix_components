@@ -1,0 +1,178 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Import PetalComponents default styles */
+@import "../../deps/petal_components/assets/default.css";
+
+/* This file is for your main application CSS */
+
+/* Table filter styles */
+.pc-table__header-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pc-table__filter-trigger {
+  padding: 2px;
+  border-radius: 2px;
+  transition: all 0.15s ease-in-out;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pc-table__filter-trigger:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* 深色模式下的悬停效果 */
+@media (prefers-color-scheme: dark) {
+  .pc-table__filter-trigger:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.pc-table__filter-trigger:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.pc-table__column-title {
+  flex: 1;
+}
+
+/* Table ellipsis styles */
+.pc-table__cell--ellipsis {
+  max-width: 0; /* 必须设置以使 text-overflow 生效 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Table fixed columns styles */
+
+/* 基础固定列样式 */
+.pc-table__cell--fixed-left,
+.pc-table__cell--fixed-right {
+  position: sticky !important;
+  z-index: 2;
+  background: white; /* 默认背景色 */
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+  .pc-table__cell--fixed-left,
+  .pc-table__cell--fixed-right {
+    background: rgb(31 41 55); /* 对应 bg-gray-800 */
+  }
+}
+
+/* 表头固定列更高层级 */
+.pc-table__header .pc-table__cell--fixed-left,
+.pc-table__header .pc-table__cell--fixed-right {
+  z-index: 3;
+}
+
+/* 左固定列边界阴影 */
+.pc-table__cell--fixed-left-last::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: -1px;
+  width: 30px;
+  transform: translateX(100%);
+  transition: box-shadow 0.3s ease;
+  content: "";
+  pointer-events: none;
+}
+
+/* 右固定列边界阴影 */
+.pc-table__cell--fixed-right-first::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -1px;
+  width: 30px;
+  transform: translateX(-100%);
+  transition: box-shadow 0.3s ease;
+  content: "";
+  pointer-events: none;
+}
+
+/* 滚动状态 - 显示左侧阴影 */
+.pc-table--ping-left .pc-table__cell--fixed-left-last::after {
+  box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* 滚动状态 - 显示右侧阴影 */
+.pc-table--ping-right .pc-table__cell--fixed-right-first::after {
+  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* 深色模式下的阴影适配 */
+@media (prefers-color-scheme: dark) {
+  .pc-table--ping-left .pc-table__cell--fixed-left-last::after {
+    box-shadow: inset 10px 0 8px -8px rgba(255, 255, 255, 0.1);
+  }
+  
+  .pc-table--ping-right .pc-table__cell--fixed-right-first::after {
+    box-shadow: inset -10px 0 8px -8px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 间隔固定列不显示阴影 */
+.pc-table--fixed-column-gapped .pc-table__cell--fixed-left-last::after,
+.pc-table--fixed-column-gapped .pc-table__cell--fixed-right-first::after {
+  box-shadow: none;
+}
+
+/* 表格容器阴影 (备用方案) */
+.pc-table__container {
+  position: relative;
+}
+
+.pc-table__container::before,
+.pc-table__container::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 30px;
+  transition: box-shadow 0.3s ease;
+  content: "";
+  pointer-events: none;
+}
+
+.pc-table__container::before {
+  left: 0;
+}
+
+.pc-table__container::after {
+  right: 0;
+}
+
+/* 容器级别的滚动阴影 */
+.pc-table--ping-left:not(.pc-table--has-fix-left) .pc-table__container::before {
+  box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
+}
+
+.pc-table--ping-right:not(.pc-table--has-fix-right) .pc-table__container::after {
+  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* 响应式适配 - 移动端禁用固定列 */
+@media (max-width: 768px) {
+  .pc-table__cell--fixed-left,
+  .pc-table__cell--fixed-right {
+    position: static !important;
+    z-index: auto;
+  }
+  
+  .pc-table__cell--fixed-left-last::after,
+  .pc-table__cell--fixed-right-first::after {
+    display: none;
+  }
+}
+

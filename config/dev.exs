@@ -9,7 +9,8 @@ import Config
 config :shop_ux_phoenix, ShopUxPhoenixWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {0, 0, 0, 0}, port: 4010],
+  http: [ip: {0, 0, 0, 0}, port: 12345],
+  url: [scheme: "https", host: "webhook.biantaishabi.org", port: 443],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
@@ -18,6 +19,15 @@ config :shop_ux_phoenix, ShopUxPhoenixWeb.Endpoint,
     esbuild: {Esbuild, :install_and_run, [:shop_ux_phoenix, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:shop_ux_phoenix, ~w(--watch)]}
   ]
+  # Watch static and templates for browser reloading.
+  # 暂时禁用 live_reload 以解决重连问题
+  # live_reload: [
+  #   patterns: [
+  #     ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+  #     ~r"priv/gettext/.*(po)$",
+  #     ~r"lib/shop_ux_phoenix_web/(controllers|live|components)/.*(ex|heex)$"
+  #   ]
+  # ]
 
 # ## SSL Support
 #
@@ -41,16 +51,6 @@ config :shop_ux_phoenix, ShopUxPhoenixWeb.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
-
-# Watch static and templates for browser reloading.
-config :shop_ux_phoenix, ShopUxPhoenixWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/shop_ux_phoenix_web/(controllers|live|components)/.*(ex|heex)$"
-    ]
-  ]
 
 # Enable dev routes for dashboard and mailbox
 config :shop_ux_phoenix, dev_routes: true

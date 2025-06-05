@@ -1,0 +1,2224 @@
+defmodule ShopUxPhoenixWeb.PetalComponentsDemoLive do
+  use Phoenix.LiveView, layout: {ShopUxPhoenixWeb.Layouts, :app}
+  use PetalComponents
+  
+  alias Phoenix.LiveView.JS
+  
+  @impl true
+  def mount(_params, _session, socket) do
+    # 使用字符串键的 map 作为表单数据
+    form_data = %{
+      "email" => "",
+      "password" => "",
+      "name" => "",
+      "message" => "",
+      "age" => "",
+      "website" => ""
+    }
+    
+    {:ok, assign(socket,
+      form: to_form(form_data, as: "user"),
+      input_value: "",
+      disabled_input: false,
+      loading_input: false,
+      loading_demo: false,
+      progress_value: 65,
+      alerts: %{
+        "info" => true,
+        "success" => true,
+        "warning" => true,
+        "danger" => true
+      },
+      # 数据展示组件的数据
+      table_data: [
+        %{id: 1, name: "张三", email: "zhangsan@example.com", status: "active", role: "管理员"},
+        %{id: 2, name: "李四", email: "lisi@example.com", status: "inactive", role: "用户"},
+        %{id: 3, name: "王五", email: "wangwu@example.com", status: "active", role: "编辑"},
+        %{id: 4, name: "赵六", email: "zhaoliu@example.com", status: "pending", role: "用户"}
+      ],
+      selected_row: nil,
+      rating_value: 3.5,
+      # 导航组件的数据
+      current_page: 3,
+      total_pages: 10,
+      current_tab: "tab1",
+      current_step: 2,
+      menu_items: [
+        %{
+          name: :dashboard,
+          label: "仪表盘",
+          path: "/dashboard",
+          icon: "hero-home"
+        },
+        %{
+          name: :users,
+          label: "用户管理",
+          path: "/users",
+          icon: "hero-users",
+          menu_items: [
+            %{name: :all_users, label: "所有用户", path: "/users"},
+            %{name: :add_user, label: "添加用户", path: "/users/new"}
+          ]
+        },
+        %{
+          name: :settings,
+          label: "设置",
+          path: "/settings",
+          icon: "hero-cog"
+        }
+      ]
+    )}
+  end
+  
+  @impl true
+  def handle_event("test_connection", _params, socket) do
+    {:noreply, put_flash(socket, :info, "WebSocket 连接正常！LiveView 事件处理成功。")}
+  end
+  
+  @impl true
+  def handle_event("button_click", %{"type" => type}, socket) do
+    {:noreply, put_flash(socket, :info, "点击了 #{type} 按钮")}
+  end
+  
+  @impl true
+  def handle_event("form_submit", params, socket) do
+    IO.inspect(params, label: "表单提交数据")
+    {:noreply, put_flash(socket, :info, "表单已提交")}
+  end
+  
+  @impl true
+  def handle_event("input_change", %{"value" => value}, socket) do
+    {:noreply, assign(socket, input_value: value)}
+  end
+  
+  @impl true
+  def handle_event("toggle_disabled", _, socket) do
+    {:noreply, assign(socket, disabled_input: !socket.assigns.disabled_input)}
+  end
+  
+  @impl true
+  def handle_event("toggle_loading", _, socket) do
+    {:noreply, assign(socket, loading_demo: !socket.assigns.loading_demo)}
+  end
+  
+  @impl true
+  def handle_event("close_modal", _, socket) do
+    {:noreply, socket}
+  end
+  
+  @impl true
+  def handle_event("close_slide_over", _, socket) do
+    {:noreply, socket}
+  end
+  
+  @impl true
+  def handle_event("show_modal", %{"id" => id}, socket) do
+    {:noreply, push_event(socket, "js-exec", %{to: "##{id}", attr: "phx-mounted"})}
+  end
+  
+  @impl true
+  def handle_event("dismiss_alert", %{"id" => id}, socket) do
+    alerts = Map.delete(socket.assigns.alerts, id)
+    {:noreply, assign(socket, alerts: alerts)}
+  end
+  
+  @impl true
+  def handle_event("confirm_action", _, socket) do
+    {:noreply, put_flash(socket, :info, "操作已确认")}
+  end
+  
+  @impl true
+  def handle_event("row_click", %{"id" => id}, socket) do
+    row = Enum.find(socket.assigns.table_data, &(&1.id == String.to_integer(id)))
+    {:noreply, assign(socket, selected_row: row) |> put_flash(:info, "选中了: #{row.name}")}
+  end
+  
+  @impl true
+  def handle_event("page_click", %{"page" => page}, socket) do
+    {:noreply, assign(socket, current_page: String.to_integer(page))}
+  end
+  
+  @impl true
+  def handle_event("tab_click", %{"tab" => tab}, socket) do
+    IO.puts("Tab clicked: #{tab}")
+    {:noreply, 
+      socket
+      |> assign(current_tab: tab)
+      |> put_flash(:info, "切换到标签: #{tab}")
+    }
+  end
+  
+  @impl true
+  def handle_event("step_click", %{"step" => step}, socket) do
+    {:noreply, assign(socket, current_step: String.to_integer(step))}
+  end
+  
+  @impl true
+  def handle_event("menu_click", %{"item" => item}, socket) do
+    {:noreply, put_flash(socket, :info, "点击了菜单: #{item}")}
+  end
+  
+  @impl true
+  def handle_event("dropdown_click", %{"action" => action}, socket) do
+    {:noreply, put_flash(socket, :info, "下拉菜单操作: #{action}")}
+  end
+
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <div class="p-6">
+      <h1 class="text-3xl font-bold mb-8">Petal Components 演示</h1>
+      
+      <div class="text-gray-600 mb-8">
+        这是一个 Petal Components 库的演示页面。我们将逐个展示各个组件的用法。
+      </div>
+      
+      <!-- LiveView 连接测试 -->
+      <div class="mb-8 p-4 bg-gray-100 rounded">
+        <p class="text-sm font-semibold mb-2">LiveView 连接测试</p>
+        <div class="flex items-center gap-4">
+          <.button phx-click="test_connection" size="sm">
+            测试连接
+          </.button>
+          <span class="text-sm text-gray-600">
+            点击测试按钮检查连接状态
+          </span>
+        </div>
+        <p class="text-xs text-gray-600 mt-2">
+          点击按钮测试 LiveView WebSocket 连接是否正常。
+          如果时间不更新或按钮无响应，说明 WebSocket 连接有问题。
+        </p>
+        <div class="mt-2 text-xs text-gray-500">
+          <p>可能的原因：</p>
+          <ul class="list-disc list-inside">
+            <li>Cloudflare 代理未正确配置 WebSocket 支持</li>
+            <li>防火墙阻止了 WebSocket 连接</li>
+            <li>JavaScript 错误阻止了 LiveView 初始化</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Button 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Button 按钮</h2>
+        
+        <!-- 基础按钮 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="flex flex-wrap gap-3">
+            <.button>默认按钮</.button>
+            <.button color="primary">主要按钮</.button>
+            <.button color="secondary">次要按钮</.button>
+            <.button color="info">信息按钮</.button>
+            <.button color="success">成功按钮</.button>
+            <.button color="warning">警告按钮</.button>
+            <.button color="danger">危险按钮</.button>
+            <.button color="gray">灰色按钮</.button>
+          </div>
+        </div>
+        
+        <!-- 按钮尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="flex flex-wrap gap-3 items-center">
+            <.button size="xs">超小按钮</.button>
+            <.button size="sm">小按钮</.button>
+            <.button size="md">中等按钮</.button>
+            <.button size="lg">大按钮</.button>
+            <.button size="xl">超大按钮</.button>
+          </div>
+        </div>
+        
+        <!-- 按钮变体 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">按钮变体</h3>
+          <div class="flex flex-wrap gap-3">
+            <.button variant="solid" color="primary">实心按钮</.button>
+            <.button variant="light" color="primary">浅色按钮</.button>
+            <.button variant="outline" color="primary">轮廓按钮</.button>
+            <.button variant="inverted" color="primary">反色按钮</.button>
+            <.button variant="shadow" color="primary">阴影按钮</.button>
+            <.button variant="ghost" color="primary">幽灵按钮</.button>
+          </div>
+        </div>
+        
+        <!-- 圆角 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">圆角设置</h3>
+          <div class="flex flex-wrap gap-3">
+            <.button radius="none">无圆角</.button>
+            <.button radius="sm">小圆角</.button>
+            <.button radius="md">中圆角</.button>
+            <.button radius="lg">大圆角</.button>
+            <.button radius="xl">超大圆角</.button>
+            <.button radius="full">全圆角</.button>
+          </div>
+        </div>
+        
+        <!-- 按钮状态 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">按钮状态</h3>
+          <div class="flex flex-wrap gap-3">
+            <.button disabled>禁用按钮</.button>
+            <.button loading>加载中</.button>
+            <.button icon="hero-arrow-down-tray">带图标</.button>
+          </div>
+        </div>
+        
+        <!-- 图标按钮 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">图标按钮</h3>
+          <div class="flex flex-wrap gap-3">
+            <.icon_button size="xs" tooltip="超小按钮">
+              <.icon name="hero-heart" class="w-3 h-3" />
+            </.icon_button>
+            <.icon_button size="sm" tooltip="小按钮">
+              <.icon name="hero-star" class="w-4 h-4" />
+            </.icon_button>
+            <.icon_button size="md" tooltip="中按钮" color="primary">
+              <.icon name="hero-plus" class="w-5 h-5" />
+            </.icon_button>
+            <.icon_button size="lg" tooltip="大按钮" color="success">
+              <.icon name="hero-check" class="w-6 h-6" />
+            </.icon_button>
+            <.icon_button size="xl" tooltip="超大按钮" color="danger">
+              <.icon name="hero-x-mark" class="w-7 h-7" />
+            </.icon_button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Form 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Form 表单</h2>
+        
+        <!-- 基础表单 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础表单</h3>
+          <.form for={@form} phx-submit="form_submit" class="max-w-md space-y-4">
+            <.field field={@form[:email]} type="email" label="邮箱" placeholder="请输入邮箱" />
+            <.field field={@form[:password]} type="password" label="密码" placeholder="请输入密码" />
+            
+            <.button type="submit" color="primary">提交</.button>
+          </.form>
+        </div>
+      </section>
+      
+      <!-- Field 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Field 表单字段</h2>
+        
+        <!-- 字段布局 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">字段布局</h3>
+          <div class="max-w-md space-y-4">
+            <.field 
+              field={@form[:name]} 
+              label="默认字段" 
+              errors={["这是一个错误提示"]} 
+            />
+            
+            <.field 
+              field={@form[:website]} 
+              label="带帮助文本的字段" 
+              placeholder="https://example.com"
+              help_text="请输入完整的网址"
+            />
+          </div>
+        </div>
+      </section>
+      
+      <!-- Input 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Input 输入框</h2>
+        
+        <!-- 输入框类型 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">输入框类型</h3>
+          <div class="space-y-3 max-w-md">
+            <.input type="text" name="text_input" value="" placeholder="文本输入框" />
+            <.input type="email" name="email_input" value="" placeholder="邮箱输入框" />
+            <.input type="password" name="password_input" value="" placeholder="密码输入框" />
+            <.input type="number" name="number_input" value="" placeholder="数字输入框" />
+            <.input type="url" name="url_input" value="" placeholder="URL输入框" />
+            <.input type="tel" name="tel_input" value="" placeholder="电话输入框" />
+            <.input type="search" name="search_input" value="" placeholder="搜索输入框" />
+            <.input type="date" name="date_input" value="" />
+            <.input type="time" name="time_input" value="" />
+            <.input type="datetime-local" name="datetime_input" value="" />
+          </div>
+        </div>
+        
+        <!-- 输入框状态 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">输入框状态</h3>
+          <div class="space-y-3 max-w-md">
+            <.input 
+              type="text" 
+              name="realtime_input"
+              value={@input_value}
+              phx-change="input_change"
+              placeholder="实时输入（当前值：#{@input_value}）" 
+            />
+            
+            <.input 
+              type="text" 
+              name="disabled_input"
+              value=""
+              placeholder="禁用的输入框" 
+              disabled={@disabled_input}
+            />
+            <.button 
+              phx-click="toggle_disabled" 
+              size="sm"
+              color="secondary"
+            >
+              切换禁用状态
+            </.button>
+            
+            <.input 
+              type="text" 
+              name="readonly_input"
+              placeholder="只读输入框" 
+              value="只读内容"
+              readonly
+            />
+            
+            <.input 
+              type="text" 
+              name="required_input"
+              value=""
+              placeholder="必填输入框" 
+              required
+            />
+          </div>
+        </div>
+        
+        <!-- 输入框尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">输入框尺寸</h3>
+          <div class="space-y-3 max-w-md">
+            <.input type="text" name="small_input" value="" placeholder="小号输入框" size="sm" />
+            <.input type="text" name="medium_input" value="" placeholder="默认输入框" size="md" />
+            <.input type="text" name="large_input" value="" placeholder="大号输入框" size="lg" />
+          </div>
+        </div>
+        
+        <!-- 特殊输入框 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">特殊输入框</h3>
+          <div class="space-y-4 max-w-md">
+            <div>
+              <.field_label>文本域</.field_label>
+              <.input type="textarea" name="textarea_demo" value="" placeholder="请输入多行文本..." rows="4" />
+            </div>
+            
+            <div>
+              <.field_label>选择框</.field_label>
+              <.input type="select" name="select_demo" value="" options={[
+                {"请选择", ""},
+                {"选项一", "1"},
+                {"选项二", "2"},
+                {"选项三", "3"}
+              ]} />
+            </div>
+            
+            <div>
+              <.field_label>复选框</.field_label>
+              <.input type="checkbox" name="agree_terms" value="true" label="同意服务条款" />
+            </div>
+            
+            <div>
+              <.field_label>单选框组</.field_label>
+              <div class="space-y-2">
+                <.input type="radio" name="plan" value="basic" label="基础版" />
+                <.input type="radio" name="plan" value="pro" label="专业版" checked />
+                <.input type="radio" name="plan" value="enterprise" label="企业版" />
+              </div>
+            </div>
+            
+            <div>
+              <.field_label>开关</.field_label>
+              <.input type="switch" name="enable_notifications" value="true" label="启用通知" />
+            </div>
+            
+            <div>
+              <.field_label>范围滑块</.field_label>
+              <.input type="range" name="range_slider" min="0" max="100" value="50" />
+            </div>
+            
+            <div>
+              <.field_label>颜色选择器</.field_label>
+              <.input type="color" name="color_picker" value="#3b82f6" />
+            </div>
+            
+            <div>
+              <.field_label>文件上传</.field_label>
+              <.input type="file" name="file_upload" value="" accept="image/*" />
+            </div>
+          </div>
+        </div>
+        
+        <!-- 输入框装饰 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">输入框装饰</h3>
+          <div class="space-y-3 max-w-md">
+            <div class="text-sm text-gray-500">
+              注意：PetalComponents 的 input 组件不直接支持 icon、prefix、suffix 属性。
+              可以通过自定义包装或使用 field 组件的其他功能来实现类似效果。
+            </div>
+            
+            <.field 
+              type="text" 
+              label="带复制功能的输入框"
+              value="可以复制的内容"
+              name="copyable_input"
+              copyable={true}
+            />
+            
+            <.field 
+              type="text" 
+              label="带清除功能的输入框"
+              value={@input_value}
+              name="clearable_input"
+              clearable={true}
+              phx-change="input_change"
+            />
+            
+            <.field 
+              type="password" 
+              label="可查看的密码输入框"
+              value="mypassword"
+              name="viewable_password"
+              viewable={true}
+            />
+          </div>
+        </div>
+      </section>
+      
+      <!-- Alert 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Alert 警告提示</h2>
+        
+        <!-- 基础警告 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="space-y-3">
+            <%= if @alerts["info"] do %>
+              <.alert color="info">
+                这是一条信息提示
+              </.alert>
+            <% end %>
+            
+            <%= if @alerts["success"] do %>
+              <.alert color="success">
+                这是一条成功提示
+              </.alert>
+            <% end %>
+            
+            <%= if @alerts["warning"] do %>
+              <.alert color="warning">
+                这是一条警告提示
+              </.alert>
+            <% end %>
+            
+            <%= if @alerts["danger"] do %>
+              <.alert color="danger">
+                这是一条危险提示
+              </.alert>
+            <% end %>
+          </div>
+        </div>
+        
+        <!-- 带图标的警告 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带图标的警告</h3>
+          <div class="space-y-3">
+            <.alert color="info" with_icon={true}>
+              带图标的信息提示
+            </.alert>
+            
+            <.alert color="success" with_icon={true}>
+              带图标的成功提示
+            </.alert>
+          </div>
+        </div>
+        
+        <!-- 带标题的警告 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带标题的警告</h3>
+          <div class="space-y-3">
+            <.alert color="info" heading="提示">
+              这是一条带标题的信息提示
+            </.alert>
+            
+            <.alert color="danger" heading="错误" with_icon={true}>
+              操作失败，请重试
+            </.alert>
+          </div>
+        </div>
+        
+        <!-- 可关闭的警告 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">可关闭的警告</h3>
+          <div class="space-y-3">
+            <.alert 
+              color="warning" 
+              with_icon={true}
+              close_button_properties={[phx_click: "dismiss_alert", phx_value_id: "closeable"]}
+            >
+              这条警告可以关闭
+            </.alert>
+          </div>
+        </div>
+        
+        <!-- 警告变体 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">警告变体</h3>
+          <div class="space-y-3">
+            <.alert color="info" variant="light">Light 变体</.alert>
+            <.alert color="info" variant="soft">Soft 变体</.alert>
+            <.alert color="info" variant="dark">Dark 变体</.alert>
+            <.alert color="info" variant="outline">Outline 变体</.alert>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Loading 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Loading 加载状态</h2>
+        
+        <!-- 基础加载 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="flex items-center gap-4">
+            <.spinner />
+            <span>默认加载中...</span>
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+              <.spinner size="sm" />
+              <span>小</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <.spinner size="md" />
+              <span>中</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <.spinner size="lg" />
+              <span>大</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 自定义颜色 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">自定义颜色</h3>
+          <div class="flex items-center gap-6">
+            <.spinner class="text-blue-600" />
+            <.spinner class="text-green-600" />
+            <.spinner class="text-red-600" />
+            <.spinner class="text-purple-600" />
+          </div>
+        </div>
+        
+        <!-- 条件显示 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">条件显示</h3>
+          <div class="flex items-center gap-4">
+            <.button phx-click="toggle_loading">
+              切换加载状态
+            </.button>
+            <.spinner show={@loading_demo} size="md" />
+            <%= if @loading_demo do %>
+              <span>加载中...</span>
+            <% end %>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Progress 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Progress 进度条</h2>
+        
+        <!-- 基础进度条 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="space-y-3">
+            <.progress value={30} />
+            <.progress value={60} />
+            <.progress value={90} />
+          </div>
+        </div>
+        
+        <!-- 不同颜色 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同颜色</h3>
+          <div class="space-y-3">
+            <.progress value={40} color="primary" />
+            <.progress value={50} color="secondary" />
+            <.progress value={60} color="info" />
+            <.progress value={70} color="success" />
+            <.progress value={80} color="warning" />
+            <.progress value={90} color="danger" />
+            <.progress value={100} color="gray" />
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="space-y-3">
+            <.progress value={@progress_value} size="xs" />
+            <.progress value={@progress_value} size="sm" />
+            <.progress value={@progress_value} size="md" />
+            <.progress value={@progress_value} size="lg" />
+            <.progress value={@progress_value} size="xl" label="65% 已完成" />
+          </div>
+        </div>
+        
+        <!-- 自定义最大值 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">自定义最大值</h3>
+          <div class="space-y-3">
+            <.progress value={7} max={10} color="success" />
+            <div class="text-sm text-gray-600">7/10 完成</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Skeleton 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Skeleton 骨架屏</h2>
+        
+        <!-- 不同类型的骨架屏 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同类型</h3>
+          <div class="space-y-6">
+            <div>
+              <p class="text-sm text-gray-600 mb-2">默认骨架屏</p>
+              <.skeleton />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">文本骨架屏</p>
+              <.skeleton kind={:text} />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">卡片骨架屏</p>
+              <.skeleton kind={:card} />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">列表骨架屏</p>
+              <.skeleton kind={:list} />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">图片骨架屏</p>
+              <.skeleton kind={:image} />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">小部件骨架屏</p>
+              <.skeleton kind={:widget} />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Modal 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Modal 模态框</h2>
+        
+        <!-- 基础模态框 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="space-y-3">
+            <.button phx-click={show_modal("basic-modal")}>
+              打开基础模态框
+            </.button>
+            
+            <.modal id="basic-modal" title="基础模态框">
+              <p>这是一个基础的模态框内容。</p>
+              <div class="mt-4 flex justify-end gap-2">
+                <.button phx-click={hide_modal("basic-modal")}>
+                  关闭
+                </.button>
+              </div>
+            </.modal>
+          </div>
+        </div>
+        
+        <!-- 确认模态框 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">确认对话框</h3>
+          <div class="space-y-3">
+            <.button color="danger" phx-click={show_modal("confirm-modal")}>
+              删除操作
+            </.button>
+            
+            <.modal id="confirm-modal" title="确认删除">
+              <p>您确定要删除这条记录吗？此操作不可撤销。</p>
+              <div class="mt-6 flex justify-end gap-2">
+                <.button phx-click={hide_modal("confirm-modal")}>
+                  取消
+                </.button>
+                <.button 
+                  color="danger" 
+                  phx-click="confirm_action"
+                  phx-click-away={hide_modal("confirm-modal")}
+                >
+                  确认删除
+                </.button>
+              </div>
+            </.modal>
+          </div>
+        </div>
+        
+        <!-- 不同尺寸的模态框 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="flex gap-3 flex-wrap">
+            <.button phx-click={show_modal("small-modal")}>
+              小型模态框
+            </.button>
+            
+            <.button phx-click={show_modal("large-modal")}>
+              大型模态框
+            </.button>
+            
+            <.button phx-click={show_modal("full-modal")}>
+              全屏模态框
+            </.button>
+            
+            <.modal id="small-modal" title="小型模态框" max_width="sm">
+              <p>这是一个小型模态框。</p>
+              <div class="mt-4">
+                <.button phx-click={hide_modal("small-modal")} size="sm">
+                  关闭
+                </.button>
+              </div>
+            </.modal>
+            
+            <.modal id="large-modal" title="大型模态框" max_width="xl">
+              <p>这是一个大型模态框，可以容纳更多内容。</p>
+              <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <div class="mt-4">
+                <.button phx-click={hide_modal("large-modal")}>
+                  关闭
+                </.button>
+              </div>
+            </.modal>
+            
+            <.modal id="full-modal" title="全屏模态框" max_width="full">
+              <p>这是一个全屏模态框。</p>
+              <div class="mt-4">
+                <.button phx-click={hide_modal("full-modal")}>
+                  关闭
+                </.button>
+              </div>
+            </.modal>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SlideOver 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">SlideOver 侧滑面板</h2>
+        
+        <!-- 不同方向 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同方向</h3>
+          <div class="flex gap-3 flex-wrap">
+            <.button phx-click={show_slide_over("right", "right-panel")}>
+              右侧滑出
+            </.button>
+            
+            <.button phx-click={show_slide_over("left", "left-panel")}>
+              左侧滑出
+            </.button>
+            
+            <.button phx-click={show_slide_over("top", "top-panel")}>
+              顶部滑出
+            </.button>
+            
+            <.button phx-click={show_slide_over("bottom", "bottom-panel")}>
+              底部滑出
+            </.button>
+            
+            <!-- 右侧面板 -->
+            <.slide_over id="right-panel" title="右侧面板" origin="right">
+              <div class="p-4">
+                <h3 class="font-semibold mb-2">面板内容</h3>
+                <p>这是从右侧滑出的面板。</p>
+                <div class="mt-4">
+                  <.button phx-click={hide_slide_over("right", "right-panel")}>
+                    关闭
+                  </.button>
+                </div>
+              </div>
+            </.slide_over>
+            
+            <!-- 左侧面板 -->
+            <.slide_over id="left-panel" title="左侧面板" origin="left">
+              <div class="p-4">
+                <h3 class="font-semibold mb-2">面板内容</h3>
+                <p>这是从左侧滑出的面板。</p>
+                <div class="mt-4">
+                  <.button phx-click={hide_slide_over("left", "left-panel")}>
+                    关闭
+                  </.button>
+                </div>
+              </div>
+            </.slide_over>
+            
+            <!-- 顶部面板 -->
+            <.slide_over id="top-panel" title="顶部面板" origin="top">
+              <div class="p-4">
+                <h3 class="font-semibold mb-2">面板内容</h3>
+                <p>这是从顶部滑出的面板。</p>
+                <div class="mt-4">
+                  <.button phx-click={hide_slide_over("top", "top-panel")}>
+                    关闭
+                  </.button>
+                </div>
+              </div>
+            </.slide_over>
+            
+            <!-- 底部面板 -->
+            <.slide_over id="bottom-panel" title="底部面板" origin="bottom">
+              <div class="p-4">
+                <h3 class="font-semibold mb-2">面板内容</h3>
+                <p>这是从底部滑出的面板。</p>
+                <div class="mt-4">
+                  <.button phx-click={hide_slide_over("bottom", "bottom-panel")}>
+                    关闭
+                  </.button>
+                </div>
+              </div>
+            </.slide_over>
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="flex gap-3 flex-wrap">
+            <.button phx-click={show_slide_over("right", "small-slide")}>
+              小型面板
+            </.button>
+            
+            <.button phx-click={show_slide_over("right", "large-slide")}>
+              大型面板
+            </.button>
+            
+            <.slide_over id="small-slide" title="小型面板" max_width="sm">
+              <div class="p-4">
+                <p>这是一个小型侧滑面板。</p>
+              </div>
+            </.slide_over>
+            
+            <.slide_over id="large-slide" title="大型面板" max_width="xl">
+              <div class="p-4">
+                <p>这是一个大型侧滑面板，可以容纳更多内容。</p>
+              </div>
+            </.slide_over>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Table 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Table 表格</h2>
+        
+        <!-- 基础表格 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础表格</h3>
+          <.table id="basic-table" rows={@table_data}>
+            <:col :let={row} label="ID">
+              <%= row.id %>
+            </:col>
+            <:col :let={row} label="姓名">
+              <%= row.name %>
+            </:col>
+            <:col :let={row} label="邮箱">
+              <%= row.email %>
+            </:col>
+            <:col :let={row} label="状态">
+              <.badge color={if row.status == "active", do: "success", else: "gray"}>
+                <%= row.status %>
+              </.badge>
+            </:col>
+            <:col :let={row} label="角色">
+              <%= row.role %>
+            </:col>
+          </.table>
+        </div>
+        
+        <!-- 可点击行的表格 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">可点击的表格行</h3>
+          <.table 
+            id="clickable-table" 
+            rows={@table_data}
+            row_click={&JS.push("row_click", value: %{id: &1.id})}
+          >
+            <:col :let={row} label="ID"><%= row.id %></:col>
+            <:col :let={row} label="姓名"><%= row.name %></:col>
+            <:col :let={row} label="邮箱"><%= row.email %></:col>
+            <:col :let={_row} label="操作">
+              <.button size="xs" variant="ghost">编辑</.button>
+            </:col>
+          </.table>
+          <%= if @selected_row do %>
+            <div class="mt-2 text-sm text-gray-600">
+              选中的行: <%= @selected_row.name %> (<%= @selected_row.email %>)
+            </div>
+          <% end %>
+        </div>
+        
+        <!-- 空状态表格 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">空状态表格</h3>
+          <.table id="empty-table" rows={[]}>
+            <:col :let={row} label="列1"><%= row.col1 %></:col>
+            <:col :let={row} label="列2"><%= row.col2 %></:col>
+            <:empty_state>
+              <div class="text-center py-8">
+                <p class="text-gray-500">暂无数据</p>
+                <.button class="mt-2" size="sm">添加数据</.button>
+              </div>
+            </:empty_state>
+          </.table>
+        </div>
+      </section>
+      
+      <!-- Card 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Card 卡片</h2>
+        
+        <!-- 基础卡片 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础卡片</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <.card>
+              <.card_content heading="基础卡片">
+                这是一个基础卡片的内容区域。
+              </.card_content>
+            </.card>
+            
+            <.card variant="outline">
+              <.card_content heading="轮廓卡片">
+                这是一个带边框的卡片。
+              </.card_content>
+            </.card>
+            
+            <.card>
+              <.card_content heading="带分类的卡片" category="新闻" category_color_class="text-blue-600">
+                这个卡片有一个分类标签。
+              </.card_content>
+            </.card>
+          </div>
+        </div>
+        
+        <!-- 带媒体的卡片 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带媒体的卡片</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <.card>
+              <.card_media src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=200&fit=crop" />
+              <.card_content heading="带图片的卡片">
+                这个卡片包含了一张图片。
+              </.card_content>
+              <.card_footer>
+                <.button size="sm">查看详情</.button>
+                <.button size="sm" variant="ghost">分享</.button>
+              </.card_footer>
+            </.card>
+            
+            <.card>
+              <.card_media 
+                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop" 
+                aspect_ratio_class="aspect-square"
+              />
+              <.card_content heading="方形图片卡片" category="产品">
+                使用 aspect_ratio_class 可以控制图片比例。
+              </.card_content>
+            </.card>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Badge 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Badge 徽章</h2>
+        
+        <!-- 基础徽章 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="flex flex-wrap gap-2">
+            <.badge>默认</.badge>
+            <.badge color="primary">主要</.badge>
+            <.badge color="secondary">次要</.badge>
+            <.badge color="info">信息</.badge>
+            <.badge color="success">成功</.badge>
+            <.badge color="warning">警告</.badge>
+            <.badge color="danger">危险</.badge>
+            <.badge color="gray">灰色</.badge>
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="flex items-center gap-2">
+            <.badge size="xs">超小</.badge>
+            <.badge size="sm">小</.badge>
+            <.badge size="md">中</.badge>
+            <.badge size="lg">大</.badge>
+            <.badge size="xl">超大</.badge>
+          </div>
+        </div>
+        
+        <!-- 不同变体 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同变体</h3>
+          <div class="flex flex-wrap gap-2">
+            <.badge color="primary" variant="light">Light</.badge>
+            <.badge color="primary" variant="dark">Dark</.badge>
+            <.badge color="primary" variant="soft">Soft</.badge>
+            <.badge color="primary" variant="outline">Outline</.badge>
+          </div>
+        </div>
+        
+        <!-- 带图标的徽章 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带图标的徽章</h3>
+          <div class="flex flex-wrap gap-2">
+            <.badge color="success">
+              <.icon name="hero-check-circle" class="w-3 h-3 mr-1" />
+              已完成
+            </.badge>
+            <.badge color="warning">
+              <.icon name="hero-clock" class="w-3 h-3 mr-1" />
+              进行中
+            </.badge>
+            <.badge color="danger">
+              <.icon name="hero-x-circle" class="w-3 h-3 mr-1" />
+              已取消
+            </.badge>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Avatar 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Avatar 头像</h2>
+        
+        <!-- 基础头像 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="flex items-center gap-4">
+            <!-- 图片头像 -->
+            <.avatar src="https://i.pravatar.cc/150?img=1" />
+            
+            <!-- 名字首字母头像 -->
+            <.avatar name="张三" />
+            <.avatar name="John Doe" />
+            
+            <!-- 默认头像（无图片无名字） -->
+            <.avatar />
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="flex items-center gap-4">
+            <.avatar size="xs" src="https://i.pravatar.cc/150?img=2" />
+            <.avatar size="sm" src="https://i.pravatar.cc/150?img=3" />
+            <.avatar size="md" src="https://i.pravatar.cc/150?img=4" />
+            <.avatar size="lg" src="https://i.pravatar.cc/150?img=5" />
+            <.avatar size="xl" src="https://i.pravatar.cc/150?img=6" />
+          </div>
+        </div>
+        
+        <!-- 随机颜色的首字母头像 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">随机颜色首字母</h3>
+          <div class="flex items-center gap-4">
+            <.avatar name="Alice" random_color />
+            <.avatar name="Bob" random_color />
+            <.avatar name="Charlie" random_color />
+            <.avatar name="David" random_color />
+          </div>
+        </div>
+        
+        <!-- 头像组 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">头像组</h3>
+          <.avatar_group 
+            avatars={[
+              "https://i.pravatar.cc/150?img=7",
+              "https://i.pravatar.cc/150?img=8",
+              "https://i.pravatar.cc/150?img=9",
+              "https://i.pravatar.cc/150?img=10"
+            ]}
+          />
+          <p class="text-sm text-gray-500 mt-2">
+            注：avatar_group 只支持图片 URL，不支持名字首字母
+          </p>
+        </div>
+      </section>
+      
+      <!-- Rating 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Rating 评分</h2>
+        
+        <!-- 基础评分 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="space-y-2">
+            <.rating rating={0} />
+            <.rating rating={1} />
+            <.rating rating={2.5} />
+            <.rating rating={3.7} />
+            <.rating rating={5} />
+          </div>
+        </div>
+        
+        <!-- 自定义总星数 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">自定义总星数</h3>
+          <div class="space-y-2">
+            <div>
+              <span class="text-sm text-gray-600 mr-2">3星制：</span>
+              <.rating rating={2} total={3} />
+            </div>
+            <div>
+              <span class="text-sm text-gray-600 mr-2">10星制：</span>
+              <.rating rating={7.5} total={10} />
+            </div>
+          </div>
+        </div>
+        
+        <!-- 带标签的评分 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带标签的评分</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <.rating rating={@rating_value} />
+              <span class="text-sm text-gray-600">3.5 分</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <.rating rating={4.8} />
+              <span class="text-sm text-gray-600">4.8/5.0</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="space-y-2">
+            <.rating rating={4} star_class="w-3 h-3" />
+            <.rating rating={4} star_class="w-4 h-4" />
+            <.rating rating={4} star_class="w-5 h-5" />
+            <.rating rating={4} star_class="w-6 h-6" />
+          </div>
+        </div>
+      </section>
+      
+      <!-- Marquee 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Marquee 滚动文本</h2>
+        
+        <!-- 水平滚动 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">水平滚动</h3>
+          <div class="border rounded-lg p-4 overflow-hidden">
+            <.marquee>
+              <span class="mx-4">🎉 欢迎使用 PetalComponents！</span>
+              <span class="mx-4">✨ 这是一个滚动文本示例</span>
+              <span class="mx-4">🚀 支持多种配置选项</span>
+              <span class="mx-4">💡 可以自定义速度和方向</span>
+            </.marquee>
+          </div>
+        </div>
+        
+        <!-- 反向滚动 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">反向滚动</h3>
+          <div class="border rounded-lg p-4 overflow-hidden">
+            <.marquee reverse>
+              <span class="mx-4">← 反向滚动</span>
+              <span class="mx-4">← 从右到左</span>
+              <span class="mx-4">← 持续循环</span>
+            </.marquee>
+          </div>
+        </div>
+        
+        <!-- 悬停暂停 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">悬停暂停</h3>
+          <div class="border rounded-lg p-4 overflow-hidden">
+            <.marquee pause_on_hover>
+              <span class="mx-4">🖱️ 鼠标悬停时暂停</span>
+              <span class="mx-4">📌 移开后继续滚动</span>
+              <span class="mx-4">⏸️ 提供更好的用户体验</span>
+            </.marquee>
+          </div>
+        </div>
+        
+        <!-- 注意事项 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">注意事项</h3>
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <p class="text-sm text-gray-600">
+              PetalComponents 的 Marquee 组件只支持水平滚动。
+              如需垂直滚动效果，可以使用自定义 CSS 动画实现。
+            </p>
+          </div>
+        </div>
+        
+        <!-- 自定义速度 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">自定义速度</h3>
+          <div class="space-y-2">
+            <div class="border rounded-lg p-2 overflow-hidden">
+              <.marquee duration="10s">
+                <span class="mx-4">🐢 慢速滚动 (10秒)</span>
+              </.marquee>
+            </div>
+            <div class="border rounded-lg p-2 overflow-hidden">
+              <.marquee duration="5s">
+                <span class="mx-4">🏃 快速滚动 (5秒)</span>
+              </.marquee>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Breadcrumbs 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Breadcrumbs 面包屑导航</h2>
+        
+        <!-- 基础面包屑 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <.breadcrumbs 
+            links={[
+              %{label: "首页", to: "/"},
+              %{label: "产品", to: "/products"},
+              %{label: "电子产品", to: "/products/electronics"},
+              %{label: "手机", to: "#"}
+            ]}
+          />
+        </div>
+        
+        <!-- 不同分隔符 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同分隔符</h3>
+          <div class="space-y-2">
+            <div>
+              <p class="text-sm text-gray-600 mb-1">斜线分隔符（默认）：</p>
+              <.breadcrumbs 
+                separator="slash"
+                links={[
+                  %{label: "Home", to: "/"},
+                  %{label: "Products", to: "/products"},
+                  %{label: "Category", to: "#"}
+                ]}
+              />
+            </div>
+            <div>
+              <p class="text-sm text-gray-600 mb-1">箭头分隔符：</p>
+              <.breadcrumbs 
+                separator="chevron"
+                links={[
+                  %{label: "Home", to: "/"},
+                  %{label: "Products", to: "/products"},
+                  %{label: "Category", to: "#"}
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <!-- 带图标的面包屑 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带图标</h3>
+          <.breadcrumbs 
+            links={[
+              %{to: "/", icon: "hero-home", icon_class: "w-4 h-4"},
+              %{label: "文档", to: "/docs", icon: "hero-document-text", icon_class: "w-4 h-4"},
+              %{label: "组件", to: "/docs/components"},
+              %{label: "面包屑", to: "#"}
+            ]}
+          />
+        </div>
+      </section>
+      
+      <!-- Dropdown 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Dropdown 下拉菜单</h2>
+        
+        <!-- 基础下拉菜单 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <.dropdown label="选项" js_lib="alpine_js">
+            <.dropdown_menu_item link_type="button" phx-click="dropdown_click" phx-value-action="edit">
+              <.icon name="hero-pencil" class="w-4 h-4 mr-2" />
+              编辑
+            </.dropdown_menu_item>
+            <.dropdown_menu_item link_type="button" phx-click="dropdown_click" phx-value-action="copy">
+              <.icon name="hero-document-duplicate" class="w-4 h-4 mr-2" />
+              复制
+            </.dropdown_menu_item>
+            <.dropdown_menu_item link_type="button" phx-click="dropdown_click" phx-value-action="delete">
+              <.icon name="hero-trash" class="w-4 h-4 mr-2" />
+              删除
+            </.dropdown_menu_item>
+          </.dropdown>
+        </div>
+        
+        <!-- 不同位置 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同位置</h3>
+          <div class="flex gap-4">
+            <.dropdown label="左对齐" placement="left" js_lib="alpine_js">
+              <.dropdown_menu_item label="选项 1" />
+              <.dropdown_menu_item label="选项 2" />
+              <.dropdown_menu_item label="选项 3" />
+            </.dropdown>
+            
+            <.dropdown label="右对齐" placement="right" js_lib="alpine_js">
+              <.dropdown_menu_item label="选项 1" />
+              <.dropdown_menu_item label="选项 2" />
+              <.dropdown_menu_item label="选项 3" />
+            </.dropdown>
+          </div>
+        </div>
+        
+        <!-- 禁用项 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">包含禁用项</h3>
+          <.dropdown label="更多操作" js_lib="alpine_js">
+            <.dropdown_menu_item label="查看" link_type="a" to="#" />
+            <.dropdown_menu_item label="编辑" link_type="a" to="#" />
+            <.dropdown_menu_item label="删除" link_type="a" to="#" disabled />
+          </.dropdown>
+        </div>
+      </section>
+      
+      <!-- Menu 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Menu 垂直菜单</h2>
+        
+        <!-- 基础菜单 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础菜单</h3>
+          <div class="max-w-xs">
+            <.vertical_menu 
+              menu_items={@menu_items}
+              current_page={:dashboard}
+              title="导航菜单"
+              js_lib="alpine_js"
+            />
+          </div>
+        </div>
+        
+        <!-- 分组菜单 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">分组菜单</h3>
+          <div class="max-w-xs">
+            <.vertical_menu 
+              menu_items={[
+                %{
+                  title: "用户",
+                  menu_items: [
+                    %{name: :profile, label: "个人资料", path: "/profile", icon: "hero-user"},
+                    %{name: :settings, label: "设置", path: "/settings", icon: "hero-cog"}
+                  ]
+                },
+                %{
+                  title: "公司",
+                  menu_items: [
+                    %{name: :team, label: "团队", path: "/team", icon: "hero-user-group"},
+                    %{name: :billing, label: "账单", path: "/billing", icon: "hero-credit-card"}
+                  ]
+                }
+              ]}
+              current_page={:profile}
+              js_lib="alpine_js"
+            />
+          </div>
+        </div>
+      </section>
+      
+      <!-- UserDropdownMenu 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">UserDropdownMenu 用户下拉菜单</h2>
+        
+        <!-- 基础用户菜单 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <.user_dropdown_menu
+            current_user_name="张三"
+            avatar_src="https://i.pravatar.cc/150?img=1"
+            js_lib="alpine_js"
+            user_menu_items={[
+              %{path: "#", icon: "hero-user", label: "个人资料"},
+              %{path: "#", icon: "hero-cog", label: "设置"},
+              %{path: "#", icon: "hero-arrow-right-on-rectangle", label: "退出登录", method: :delete}
+            ]}
+          />
+        </div>
+        
+        <!-- 无头像的用户菜单 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">无头像</h3>
+          <.user_dropdown_menu
+            current_user_name="李四"
+            js_lib="alpine_js"
+            user_menu_items={[
+              %{path: "#", icon: "hero-user", label: "账户"},
+              %{path: "#", icon: "hero-bell", label: "通知"},
+              %{path: "#", icon: "hero-arrow-right-on-rectangle", label: "登出"}
+            ]}
+          />
+        </div>
+      </section>
+      
+      <!-- Pagination 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Pagination 分页</h2>
+        
+        <!-- 基础分页 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <.pagination
+            path="/:page"
+            current_page={@current_page}
+            total_pages={@total_pages}
+            event={true}
+            phx-click="page_click"
+          />
+          <p class="text-sm text-gray-600 mt-2">当前页: <%= @current_page %></p>
+        </div>
+        
+        <!-- 不同配置 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同配置</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-gray-600 mb-2">显示更多兄弟页:</p>
+              <.pagination
+                current_page={5}
+                total_pages={20}
+                sibling_count={2}
+                boundary_count={1}
+                event={true}
+              />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">显示边界箭头:</p>
+              <.pagination
+                current_page={5}
+                total_pages={20}
+                show_boundary_chevrons={true}
+                event={true}
+              />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">少量页数:</p>
+              <.pagination
+                current_page={2}
+                total_pages={3}
+                event={true}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Tabs 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Tabs 标签页</h2>
+        
+        <!-- 胶囊式标签 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">胶囊式标签（使用JavaScript切换）</h3>
+          <div class="flex gap-1" role="tablist">
+            <.button 
+              color={if @current_tab == "tab1", do: "primary", else: "gray"}
+              variant={if @current_tab == "tab1", do: "solid", else: "light"}
+              phx-click="tab_click"
+              phx-value-tab="tab1"
+              role="tab"
+              aria-selected={@current_tab == "tab1"}
+            >
+              标签 1
+            </.button>
+            <.button 
+              color={if @current_tab == "tab2", do: "primary", else: "gray"}
+              variant={if @current_tab == "tab2", do: "solid", else: "light"}
+              phx-click="tab_click"
+              phx-value-tab="tab2"
+              role="tab"
+              aria-selected={@current_tab == "tab2"}
+            >
+              标签 2
+              <.badge size="xs" color="danger" class="ml-2">5</.badge>
+            </.button>
+            <.button 
+              color={if @current_tab == "tab3", do: "primary", else: "gray"}
+              variant={if @current_tab == "tab3", do: "solid", else: "light"}
+              phx-click="tab_click"
+              phx-value-tab="tab3"
+              role="tab"
+              aria-selected={@current_tab == "tab3"}
+            >
+              标签 3
+            </.button>
+            <.button 
+              disabled
+              role="tab"
+            >
+              禁用
+            </.button>
+          </div>
+          <div class="mt-4 p-4 border rounded" role="tabpanel">
+            <%= case @current_tab do %>
+              <% "tab1" -> %>
+                <p>这是标签 1 的内容</p>
+              <% "tab2" -> %>
+                <p>这是标签 2 的内容，有 5 个新消息</p>
+              <% "tab3" -> %>
+                <p>这是标签 3 的内容</p>
+              <% _ -> %>
+                <p>选择一个标签查看内容</p>
+            <% end %>
+          </div>
+        </div>
+        
+        <!-- PetalComponents 标签样式 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">PetalComponents 标签样式（作为导航链接）</h3>
+          <.tabs>
+            <.tab 
+              label="首页" 
+              link_type="a"
+              to="/"
+              is_active={false}
+            />
+            <.tab 
+              label="组件" 
+              link_type="a"
+              to="/components/petal"
+              is_active={true}
+              number={30}
+            />
+            <.tab 
+              label="文档" 
+              link_type="a"
+              to="#"
+              is_active={false}
+            />
+            <.tab 
+              label="禁用" 
+              link_type="a"
+              to="#"
+              disabled={true}
+            />
+          </.tabs>
+          <p class="mt-2 text-sm text-gray-600">
+            注意：PetalComponents 的标签组件主要设计用于页面导航，而不是内容切换
+          </p>
+        </div>
+        
+        <!-- 下划线标签 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">下划线标签</h3>
+          <.tabs underline={true}>
+            <.tab 
+              label="概览" 
+              link_type="a"
+              to="#"
+              is_active={true}
+              underline={true}
+            />
+            <.tab 
+              label="详情" 
+              link_type="a"
+              to="#"
+              underline={true}
+            />
+            <.tab 
+              label="评论" 
+              link_type="a"
+              to="#"
+              underline={true}
+              number={12}
+            />
+            <.tab 
+              label="设置" 
+              link_type="a"
+              to="#"
+              underline={true}
+            />
+          </.tabs>
+        </div>
+      </section>
+      
+      <!-- Stepper 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Stepper 步骤条</h2>
+        
+        <!-- 水平步骤条 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">水平步骤条</h3>
+          <.stepper
+            orientation="horizontal"
+            steps={[
+              %{
+                name: "账户信息",
+                description: "填写基本信息",
+                complete?: true,
+                active?: false
+              },
+              %{
+                name: "个人资料",
+                description: "完善详细信息",
+                complete?: false,
+                active?: true,
+                on_click: "step_click"
+              },
+              %{
+                name: "确认提交",
+                description: "检查并提交",
+                complete?: false,
+                active?: false
+              }
+            ]}
+          />
+        </div>
+        
+        <!-- 垂直步骤条 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">垂直步骤条</h3>
+          <div class="max-w-sm">
+            <.stepper
+              orientation="vertical"
+              steps={[
+                %{
+                  name: "创建账户",
+                  complete?: true,
+                  active?: false
+                },
+                %{
+                  name: "验证邮箱",
+                  complete?: true,
+                  active?: false
+                },
+                %{
+                  name: "添加详情",
+                  complete?: false,
+                  active?: true
+                },
+                %{
+                  name: "完成",
+                  complete?: false,
+                  active?: false
+                }
+              ]}
+            />
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-gray-600 mb-2">小尺寸:</p>
+              <.stepper
+                size="sm"
+                steps={[
+                  %{name: "步骤 1", complete?: true, active?: false},
+                  %{name: "步骤 2", complete?: false, active?: true},
+                  %{name: "步骤 3", complete?: false, active?: false}
+                ]}
+              />
+            </div>
+            
+            <div>
+              <p class="text-sm text-gray-600 mb-2">大尺寸:</p>
+              <.stepper
+                size="lg"
+                steps={[
+                  %{name: "步骤 1", complete?: true, active?: false},
+                  %{name: "步骤 2", complete?: false, active?: true},
+                  %{name: "步骤 3", complete?: false, active?: false}
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Link 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Link 链接</h2>
+        
+        <!-- 基础链接 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="space-x-4">
+            <.a link_type="a" to="#" class="text-blue-600 hover:underline">
+              普通链接
+            </.a>
+            
+            <.a link_type="live_patch" to="#" class="text-blue-600 hover:underline">
+              Live Patch 链接
+            </.a>
+            
+            <.a link_type="live_redirect" to="#" class="text-blue-600 hover:underline">
+              Live Redirect 链接
+            </.a>
+            
+            <.a link_type="button" label="按钮式链接" class="text-blue-600 hover:underline" />
+          </div>
+        </div>
+        
+        <!-- 禁用链接 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">禁用状态</h3>
+          <div class="space-x-4">
+            <.a to="#" disabled={true} class="text-gray-400 cursor-not-allowed">
+              禁用的链接
+            </.a>
+            
+            <.a link_type="button" label="禁用的按钮链接" disabled={true} class="text-gray-400 cursor-not-allowed" />
+          </div>
+        </div>
+        
+        <!-- 带图标的链接 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带图标</h3>
+          <div class="space-x-4">
+            <.a to="#" class="text-blue-600 hover:underline inline-flex items-center">
+              <.icon name="hero-arrow-left" class="w-4 h-4 mr-1" />
+              返回
+            </.a>
+            
+            <.a to="#" class="text-blue-600 hover:underline inline-flex items-center">
+              下一页
+              <.icon name="hero-arrow-right" class="w-4 h-4 ml-1" />
+            </.a>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Container 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Container 容器</h2>
+        
+        <!-- 不同尺寸的容器 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同最大宽度</h3>
+          <div class="space-y-4">
+            <.container max_width="sm" class="bg-gray-100 p-4 rounded">
+              <p>小型容器 (max-width: sm)</p>
+            </.container>
+            
+            <.container max_width="md" class="bg-gray-100 p-4 rounded">
+              <p>中型容器 (max-width: md)</p>
+            </.container>
+            
+            <.container max_width="lg" class="bg-gray-100 p-4 rounded">
+              <p>大型容器 (max-width: lg)</p>
+            </.container>
+            
+            <.container max_width="xl" class="bg-gray-100 p-4 rounded">
+              <p>超大型容器 (max-width: xl)</p>
+            </.container>
+            
+            <.container max_width="full" class="bg-gray-100 p-4 rounded">
+              <p>全宽容器 (max-width: full)</p>
+            </.container>
+          </div>
+        </div>
+        
+        <!-- 移动端内边距 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">移动端内边距控制</h3>
+          <div class="space-y-4">
+            <.container class="bg-blue-100 p-4 rounded">
+              <p>默认容器（移动端有内边距）</p>
+            </.container>
+            
+            <.container no_padding_on_mobile={true} class="bg-red-100 p-4 rounded">
+              <p>移动端无内边距的容器</p>
+            </.container>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Accordion 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Accordion 折叠面板</h2>
+        
+        <!-- 基础折叠面板 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <.accordion js_lib="alpine_js">
+            <:item heading="什么是 Phoenix LiveView？">
+              Phoenix LiveView 是一个令人兴奋的新库，它使开发者能够使用服务器渲染的 HTML 
+              构建富交互、实时的用户体验，而无需编写 JavaScript。
+            </:item>
+            <:item heading="如何使用 PetalComponents？">
+              PetalComponents 是一个为 Phoenix LiveView 设计的组件库，提供了丰富的 UI 组件，
+              让你能够快速构建美观的应用界面。
+            </:item>
+            <:item heading="支持暗色模式吗？">
+              是的，PetalComponents 完全支持暗色模式。所有组件都经过精心设计，
+              能在浅色和暗色主题下都保持良好的视觉效果。
+            </:item>
+          </.accordion>
+        </div>
+        
+        <!-- 默认展开项 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">默认展开项</h3>
+          <.accordion open_index={0} js_lib="alpine_js">
+            <:item heading="默认展开的面板">
+              这个面板在页面加载时就是展开的。你可以通过设置 open_index 属性来控制默认展开哪个面板。
+            </:item>
+            <:item heading="默认折叠的面板">
+              这个面板默认是折叠的，需要点击才能展开。
+            </:item>
+          </.accordion>
+        </div>
+        
+        <!-- Ghost 样式 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">Ghost 样式</h3>
+          <.accordion variant="ghost" js_lib="alpine_js">
+            <:item heading="Ghost 样式面板 1">
+              Ghost 样式提供了一种更简洁的外观，没有边框和背景色。
+            </:item>
+            <:item heading="Ghost 样式面板 2">
+              这种样式适合在已经有背景的容器中使用。
+            </:item>
+          </.accordion>
+        </div>
+      </section>
+      
+      <!-- ButtonGroup 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">ButtonGroup 按钮组</h2>
+        
+        <!-- 基础按钮组 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="space-y-4">
+            <.button_group aria_label="视图选项">
+              <:button phx-click="view_grid">
+                <.icon name="hero-squares-2x2" class="w-4 h-4" />
+              </:button>
+              <:button phx-click="view_list">
+                <.icon name="hero-list-bullet" class="w-4 h-4" />
+              </:button>
+              <:button phx-click="view_card">
+                <.icon name="hero-square-3-stack-3d" class="w-4 h-4" />
+              </:button>
+            </.button_group>
+            
+            <.button_group aria_label="文本对齐">
+              <:button label="左对齐" phx-click="align_left" />
+              <:button label="居中" phx-click="align_center" />
+              <:button label="右对齐" phx-click="align_right" />
+              <:button label="两端对齐" phx-click="align_justify" />
+            </.button_group>
+          </div>
+        </div>
+        
+        <!-- 不同尺寸 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同尺寸</h3>
+          <div class="space-y-4">
+            <.button_group aria_label="超小按钮组" size="xs">
+              <:button>超小</:button>
+              <:button>按钮</:button>
+              <:button>组</:button>
+            </.button_group>
+            
+            <.button_group aria_label="小按钮组" size="sm">
+              <:button>小</:button>
+              <:button>按钮</:button>
+              <:button>组</:button>
+            </.button_group>
+            
+            <.button_group aria_label="中按钮组" size="md">
+              <:button>中</:button>
+              <:button>按钮</:button>
+              <:button>组</:button>
+            </.button_group>
+            
+            <.button_group aria_label="大按钮组" size="lg">
+              <:button>大</:button>
+              <:button>按钮</:button>
+              <:button>组</:button>
+            </.button_group>
+            
+            <.button_group aria_label="超大按钮组" size="xl">
+              <:button>超大</:button>
+              <:button>按钮</:button>
+              <:button>组</:button>
+            </.button_group>
+          </div>
+        </div>
+        
+        <!-- 带禁用按钮 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">包含禁用按钮</h3>
+          <.button_group aria_label="操作选项">
+            <:button phx-click="save">保存</:button>
+            <:button phx-click="edit">编辑</:button>
+            <:button phx-click="delete" disabled={true}>删除</:button>
+          </.button_group>
+        </div>
+        
+        <!-- 链接按钮组 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">链接按钮组</h3>
+          <.button_group aria_label="页面导航">
+            <:button kind="link" patch="/page1">页面 1</:button>
+            <:button kind="link" patch="/page2">页面 2</:button>
+            <:button kind="link" patch="/page3">页面 3</:button>
+          </.button_group>
+        </div>
+      </section>
+      
+      <!-- Icon 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Icon 图标</h2>
+        
+        <!-- 基础图标 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">基础用法</h3>
+          <div class="flex items-center gap-4">
+            <.icon name="hero-home" />
+            <.icon name="hero-user" />
+            <.icon name="hero-cog" />
+            <.icon name="hero-heart" />
+            <.icon name="hero-star" />
+          </div>
+        </div>
+        
+        <!-- 不同变体 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">不同变体</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-4">
+              <.icon name="hero-heart" />
+              <span class="text-sm text-gray-600">默认 (24x24 outline)</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <.icon name="hero-heart-solid" />
+              <span class="text-sm text-gray-600">Solid (24x24 solid)</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <.icon name="hero-heart-mini" />
+              <span class="text-sm text-gray-600">Mini (20x20 solid)</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <.icon name="hero-heart-micro" />
+              <span class="text-sm text-gray-600">Micro (16x16 solid)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 自定义样式 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">自定义样式</h3>
+          <div class="flex items-center gap-4">
+            <.icon name="hero-star-solid" class="w-8 h-8 text-yellow-500" />
+            <.icon name="hero-heart-solid" class="w-10 h-10 text-red-500" />
+            <.icon name="hero-check-circle-solid" class="w-12 h-12 text-green-500" />
+            <.icon name="hero-x-circle-solid" class="w-6 h-6 text-gray-400" />
+          </div>
+        </div>
+        
+        <!-- 动画图标 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">带动画效果</h3>
+          <div class="flex items-center gap-4">
+            <.icon name="hero-arrow-path" class="w-6 h-6 animate-spin" />
+            <.icon name="hero-bell" class="w-6 h-6 animate-bounce" />
+            <.icon name="hero-heart-solid" class="w-6 h-6 text-red-500 animate-pulse" />
+          </div>
+        </div>
+      </section>
+      
+      <!-- Typography 组件 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Typography 排版</h2>
+        
+        <!-- 标题 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">标题层级</h3>
+          <div class="space-y-2">
+            <.h1>一级标题 H1</.h1>
+            <.h2>二级标题 H2</.h2>
+            <.h3>三级标题 H3</.h3>
+            <.h4>四级标题 H4</.h4>
+            <.h5>五级标题 H5</.h5>
+          </div>
+        </div>
+        
+        <!-- 标题样式 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">标题样式</h3>
+          <div class="space-y-2">
+            <.h3 underline={true}>带下划线的标题</.h3>
+            <.h3 color_class="text-blue-600">蓝色标题</.h3>
+            <.h3 no_margin={true} class="bg-gray-100 p-2">无边距标题</.h3>
+            <.h3 label="使用 label 属性的标题" />
+          </div>
+        </div>
+        
+        <!-- 段落 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">段落</h3>
+          <.p>
+            这是一个普通段落。PetalComponents 提供了丰富的排版组件，
+            让你能够轻松创建结构良好、易于阅读的内容。
+          </.p>
+          <.p no_margin={true} class="text-gray-600">
+            这是一个没有边距的段落，可以用于紧凑的布局。
+          </.p>
+        </div>
+        
+        <!-- 富文本容器 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">富文本容器</h3>
+          
+          <!-- 对比测试 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <h4 class="font-medium mb-2">没有 prose 样式：</h4>
+              <div class="border p-4 rounded bg-gray-50">
+                <h2>普通的 H2 标题</h2>
+                <p>这是普通的段落文本，没有特殊的排版样式。</p>
+                <ul>
+                  <li>普通列表项 1</li>
+                  <li>普通列表项 2</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <h4 class="font-medium mb-2">使用 prose 样式：</h4>
+              <div class="border p-4 rounded bg-gray-50">
+                <div class="prose">
+                  <h2>Prose 中的 H2 标题</h2>
+                  <p>这是 prose 容器中的段落文本，应该有更好的排版。</p>
+                  <ul>
+                    <li>样式化列表项 1</li>
+                    <li>样式化列表项 2</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 完整示例 -->
+          <div class="border p-4 rounded bg-gray-50">
+            <.prose>
+              <h1>一级标题示例</h1>
+              <p class="lead">
+                这是一个引导段落，通常用于文章开头，字体会稍大一些。
+              </p>
+              <h2>二级标题示例</h2>
+              <p>
+                Prose 容器为富文本内容提供了优雅的默认样式。
+                它会自动为标题、段落、列表等元素添加合适的间距和样式。
+              </p>
+              <h3>三级标题示例</h3>
+              <p>
+                这种容器特别适合用于显示文章、博客内容或文档。
+                所有的文本元素都会获得适当的排版样式。
+              </p>
+              <ul>
+                <li>自动样式化的列表项</li>
+                <li>合适的间距</li>
+                <li>优雅的排版</li>
+              </ul>
+              <ol>
+                <li>有序列表第一项</li>
+                <li>有序列表第二项</li>
+                <li>有序列表第三项</li>
+              </ol>
+              <blockquote>
+                "这是一个引用块，会有特殊的样式处理，通常会有缩进和不同的文字颜色。"
+              </blockquote>
+              <p>
+                你还可以包含<strong>粗体文本</strong>和<em>斜体文本</em>，
+                以及<a href="#">链接</a>。甚至可以有<code>行内代码</code>。
+              </p>
+              <pre><code class="language-javascript">{"// 代码块示例
+function hello() {
+  console.log(\"Hello, World!\");
+}"}</code></pre>
+              <hr>
+              <p>
+                水平线上方是代码块，下方是普通段落。
+              </p>
+            </.prose>
+          </div>
+          <p class="text-sm text-gray-600 mt-2">
+            注意：prose 样式需要 @tailwindcss/typography 插件。如果样式没有正确显示，
+            请确保已安装插件并重新构建 CSS（已执行 mix assets.build）
+          </p>
+        </div>
+        
+        <!-- 列表 -->
+        <div class="mb-6">
+          <h3 class="text-lg font-medium mb-3">列表</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-medium mb-2">无序列表</h4>
+              <.ul>
+                <li>Phoenix LiveView</li>
+                <li>PetalComponents</li>
+                <li>Tailwind CSS</li>
+                <li>Alpine JS</li>
+              </.ul>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">有序列表</h4>
+              <.ol>
+                <li>安装依赖</li>
+                <li>配置组件</li>
+                <li>开始使用</li>
+                <li>自定义样式</li>
+              </.ol>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    """
+  end
+end
